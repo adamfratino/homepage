@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const Container = styled.section`
-  align-items: center;
   display: inline-flex;
   filter: blur(200px);
   flex-direction: column;
