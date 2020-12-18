@@ -12,7 +12,11 @@ const GlobalStyle = createGlobalStyle`
 const Home = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
-  useEffect(() => setIsLoaded(true), []);
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoaded(true);
+    }, 100);
+  }, []);
 
   return (
     <>
