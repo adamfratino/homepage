@@ -4,29 +4,26 @@ import { faCodepen, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faBolt } from '@fortawesome/free-solid-svg-icons';
 import { faFile } from '@fortawesome/free-regular-svg-icons';
 
-const iconBase = 4;
-const iconSize = "5x";
-
 const LinkGroup = () => (
   <StyledLinkGroup>
     <li>
       <a href="//github.com/adamfratino" target="_blank" rel="nofollow">
-        <Icon icon={faGithub} size={iconSize} />
+        <Icon icon={faGithub} />
       </a>
     </li>
     <li>
       <a href="//codepen.io/adamfratino" target="_blank" rel="nofollow">
-        <Icon icon={faCodepen} size={iconSize} />
+        <Icon icon={faCodepen} />
       </a>
     </li>
     <li>
       <a href="//cargocollective.com/adamfratino" target="_blank" rel="nofollow">
-        <Icon icon={faBolt} size={iconSize} />
+        <Icon icon={faBolt} />
       </a>
     </li>
     <li>
       <a href="#">
-        <Icon icon={faFile} size={iconSize} />
+        <Icon icon={faFile} />
       </a>
     </li>
   </StyledLinkGroup>
@@ -55,11 +52,15 @@ const StyledLinkGroup = styled.ul`
     a {
       color: black;
       display: block;
-      font-size: ${iconBase}px;
+      height: 24px;
       transition: all 100ms ease;
 
       &:hover {
         transform: scale(1.5);
+      }
+
+      svg {
+        height: 100%;
       }
     }
   }
