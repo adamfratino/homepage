@@ -36,7 +36,7 @@ const Home = () => {
 
       <Main>
         <Container className={isLoaded && 'is-loaded'}>
-          <Title text="Adam Fratino" className="is-active" />
+          <Title text="Adam Fratinooooo" className="is-active" />
           <TextBand>
             UI Engineer <span>at</span> Peloton
           </TextBand>
