@@ -7,6 +7,13 @@ const Container = styled.section`
   height: 100vh;
   justify-content: center;
   padding: 24px;
+  transition: all 250ms linear;
+  transition-delay: 200ms;
+
+  &.is-loaded {
+    filter: blur(0);
+    opacity: 1;
+  }
 `;
 
 export default Container;
