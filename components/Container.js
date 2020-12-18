@@ -5,11 +5,11 @@ const Container = styled.section`
   filter: blur(200px);
   flex-direction: column;
   height: 100vh;
-  transition-delay: 200ms;
   justify-content: center;
   opacity: 0;
   padding: 24px;
-  transition: all 200ms linear;
+  transition: all 200ms ease;
+  transition-delay: 250ms;
 
   &.is-loaded {
     filter: blur(0);
