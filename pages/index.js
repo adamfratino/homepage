@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { useEffect, useState } from 'react';
 import { Container, LinkGroup, Main, TextBand, Title } from '../components';
 import { createGlobalStyle } from 'styled-components';
 
@@ -9,6 +10,10 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Home = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => setIsLoaded(true), []);
+
   return (
     <>
       <Head>
@@ -30,7 +35,7 @@ const Home = () => {
       <GlobalStyle />
 
       <Main>
-        <Container>
+        <Container isLoaded={isLoaded}>
           <Title text="Adam Fratino" className="is-active" />
           <TextBand>
             UI Engineer <span>at</span> Peloton

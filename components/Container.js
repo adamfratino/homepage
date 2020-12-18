@@ -1,30 +1,15 @@
-import styled, { keyframes } from 'styled-components';
-
-const fadeIn = keyframes`
-  0% {
-    filter: blur(200px);
-    opacity: 0;
-  }
-  100% {
-    filter: blur(0);
-    opacity: 1;
-  }
-`;
+import styled from 'styled-components';
 
 const Container = styled.section`
-  animation-delay: 250ms;
-  animation-duration: 250ms;
-  animation-fill-mode: forwards; 
-  animation-name: ${fadeIn};
   display: inline-flex;
-  filter: blur(200px);
+  filter: blur(${props => props.isLoaded ? 0 : `200px`});
   flex-direction: column;
   height: 100vh;
   justify-content: center;
-  opacity: 0;
+  opacity: ${props => props.isLoaded ? 1 : 0};
   padding: 24px;
-  transition: all 200ms ease;
-  transition-delay: 250ms;
+  transition: all 250ms ease;
+  transition-delay: 100ms;
 `;
 
 export default Container;
