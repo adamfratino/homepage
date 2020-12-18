@@ -24,6 +24,6 @@ const StyledTextBand = styled.h2`
   span {
     font-size: 80%;
     text-transform: none;
-    margin: 0 0.5em;
+    margin: 0 0.35em;
   }
 `;
