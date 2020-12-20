@@ -8,22 +8,38 @@ export default TextBand;
 
 const StyledTextBand = styled.h2`
   align-items: center;
-  background: gold;
-  border: 2px solid black;
-  border-top: none;
+  border-bottom: 2px solid black;
   border-top-width: 6px;
   display: flex;
   font-family: 'Lato', sans-serif;
   font-size: 18px;
   justify-content: center;
   letter-spacing: 0.05em;
-  padding: 8px 0;
+  padding: 16px 0;
   text-transform: uppercase;
   width: 100%;
+
+  @media (max-width: 700px) {
+    display: inline;
+
+    .large:first-of-type {
+      display: block;
+    }
+
+    .large:last-of-type {
+      font-size: 12px;
+    }
+  }
   
-  span {
-    font-size: 80%;
+  .small {
+    font-size: 75%;
     text-transform: none;
     margin: 0 0.35em;
+
+    @media (max-width: 700px) {
+      font-size: 12px;
+      margin-left: 0;
+      text-transform: uppercase;
+    }
   }
 `;

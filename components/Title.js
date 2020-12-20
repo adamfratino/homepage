@@ -13,13 +13,13 @@ const Title = ({ text, className }) => (
 
 const TitleContainer = styled.div`
   border-bottom: 2px solid black;
-  padding-bottom: 4px;
 `;
 
 const StyledTitle = styled.h1`
   color: ${titleColorDark};
-  font-family: 'Lato', serif;
+  font-family: 'Martel', serif;
   font-size: 96px;
+  font-weight: 900;
   position: relative;
 
   &::before,
@@ -28,7 +28,6 @@ const StyledTitle = styled.h1`
     bottom: 0;
     font-size: 100%;
     left: 0;
-    opacity: 0;
     position: absolute;
     right: 0;
     top: 0;
@@ -38,26 +37,12 @@ const StyledTitle = styled.h1`
 
   &::before {
     color: ${titleColorPrimary};
+    transform: translate(${hoverDistance}, ${hoverDistance});
   }
 
   &::after {
     color: ${titleColorLight};
-    
-  }
-
-  &.is-active {
-    &::before,
-    &::after {
-      opacity: 1;
-    }
-
-    &::before {
-      transform: translate(${hoverDistance}, ${hoverDistance});
-    }
-
-    &::after {
-      transform: translate(-${hoverDistance}, -${hoverDistance});
-    }
+    transform: translate(-${hoverDistance}, -${hoverDistance});
   }
 `;
 

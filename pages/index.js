@@ -36,9 +36,11 @@ const Home = () => {
 
       <Main>
         <Container isLoaded={isLoaded}>
-          <Title text="Adam Fratino" className="is-active" />
+          <Title text="adam fratino" className="is-active" />
           <TextBand>
-            UI Engineer <span>at</span> Peloton
+            <span class="large">User Interface Engineer</span>
+            <span class="small">with a background in</span>
+            <span class="large">Graphic Design</span>
           </TextBand>
           <LinkGroup />
         </Container>

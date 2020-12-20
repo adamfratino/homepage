@@ -8,8 +8,8 @@ const Container = styled.section`
   justify-content: center;
   opacity: ${props => props.isLoaded ? 1 : 0};
   padding: 24px;
-  transition: all 250ms ease;
-  transition-delay: 100ms;
+  transition: all 750ms ease;
+  transition-delay: 200ms;
 `;
 
 export default Container;

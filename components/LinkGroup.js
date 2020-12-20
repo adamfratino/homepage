@@ -9,21 +9,25 @@ const LinkGroup = () => (
     <li>
       <a href="//github.com/adamfratino" target="_blank" rel="nofollow">
         <Icon icon={faGithub} />
+        <span>Github</span>
       </a>
     </li>
     <li>
       <a href="//codepen.io/adamfratino" target="_blank" rel="nofollow">
         <Icon icon={faCodepen} />
+        <span>CodePen</span>
       </a>
     </li>
     <li>
       <a href="//cargocollective.com/adamfratino" target="_blank" rel="nofollow">
         <Icon icon={faBolt} />
+        <span>Cargo</span>
       </a>
     </li>
     <li>
-      <a href="#">
+      <a href="/resume.pdf" target="_blank">
         <Icon icon={faFile} />
+        <span>Resume</span>
       </a>
     </li>
   </StyledLinkGroup>
@@ -32,35 +36,77 @@ const LinkGroup = () => (
 export default LinkGroup;
 
 const StyledLinkGroup = styled.ul`
-  background: #fff391;
-  border: 2px solid black;
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
-  border-top: none;
   display: flex;
   font-family: 'Lato', sans-serif;
   font-size: 12px;
   justify-content: center;
   letter-spacing: 0.05em;
-  padding: 16px 0;
   width: 100%;
 
+  @media (max-width: 700px) {
+    flex-direction: column;
+  }
+
   li {
-    margin: 0 16px;
+    flex: 1;
     text-transform: uppercase;
+    padding: 16px 16px 8px;
+
+    @media (max-width: 700px) {
+      background: gold;
+      border: 2px solid black;
+      border-top: none;
+      padding-bottom: 16px;
+
+      &:not(:first-of-type) {
+        border-top: 2px solid black;
+      }
+    }
+    
+    &:not(:last-of-type) {
+      border-right: 2px solid black;
+      margin-bottom: 8px;
+    }
 
     a {
+      align-items: center;
       color: black;
-      display: block;
+      display: flex;
       height: 24px;
-      transition: all 100ms ease;
+      justify-content: center;
+      text-decoration: none;
+
+      @media (max-width: 700px) {
+        &:active {
+          background: transparent;
+        }
+
+        &:hover {
+          svg,
+          span {
+            transform: none;
+          }
+        }
+      }
 
       &:hover {
-        transform: scale(1.5);
+        svg {
+          transform: scale(1.25);
+        }
+
+        span {
+          transform: translate3d(4px, 0, 0);
+        }
+      }
+
+      svg,
+      span {
+        transition: all 100ms ease;
       }
 
       svg {
         height: 100%;
+        margin-right: 8px;
       }
     }
   }
