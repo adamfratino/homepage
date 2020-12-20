@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
-import { Container, Description, LinkGroup, Main, TextBand, Title } from '../components';
+import { Contact, Container, Description, LinkGroup, Main, TextBand, Title } from '../components';
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
@@ -42,8 +42,13 @@ const Home = () => {
           <Description>
             I came to <strong>New York City</strong> to study <strong>graphic design</strong> at the <strong>School of Visual Arts</strong>.
             I stuck around to develop and maintain sites for clients like <strong>Samsung</strong> and <strong>Verizon</strong> at <strong>The Barbarian Group</strong> and <strong>Rokkan</strong>.
-            Now I work at <strong>Peloton</strong> building <strong>UI components</strong> and <strong>design systems</strong>. In my free time I play <strong>shuffleboard at Royal Palms</strong>.
+            Now I work at <strong>Peloton</strong> building <strong>UI components</strong> and <strong>design systems</strong>.
+            In my free time I play <strong>shuffleboard</strong> in a league at <strong>Royal Palms</strong>.
           </Description>
+          <Contact>
+            If there's anything else you wanna know, <a href="mailto:hello@adamfratino.com">hit me up</a>!
+            <span className="wave">👋</span>
+          </Contact>
           <LinkGroup />
         </Container>
       </Main>

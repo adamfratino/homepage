@@ -97,7 +97,6 @@ const StyledLinkGroup = styled.ul`
         }
 
         span {
-          background-color: gold;
           transform: translate3d(4px, 0, 0);
         }
       }

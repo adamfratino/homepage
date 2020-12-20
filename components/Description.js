@@ -11,16 +11,14 @@ export default Description;
 const DescriptionContainer = styled.div`
   display: flex;
   justify-content: center;
-  width: 100%;
 `;
 
 const StyledDescription = styled.p`
   font-family: 'Lato', sans-serif;
   line-height: 1.6;
-  padding: 16px;
-  max-width: 625px;
+  padding: 32px 16px 16px;
+  max-width: 620px;
   display: inline-block;
-  width: 100%;
 
   @media (max-width: 700px) {
     font-size: 14px;
