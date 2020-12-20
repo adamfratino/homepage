@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
-import { Container, LinkGroup, Main, TextBand, Title } from '../components';
+import { Container, Description, LinkGroup, Main, TextBand, Title } from '../components';
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
@@ -20,10 +20,7 @@ const Home = () => {
         <title>Adam Fratino : UI Engineer</title>
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Bitter:wght@600&family=Lato:wght@900&display=swap"
-          rel="stylesheet"
-        />
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;900&family=Martel:wght@900&display=swap" rel="stylesheet" />
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
@@ -38,10 +35,15 @@ const Home = () => {
         <Container isLoaded={isLoaded}>
           <Title text="adam fratino" className="is-active" />
           <TextBand>
-            <span class="large">User Interface Engineer</span>
-            <span class="small">with a background in</span>
-            <span class="large">Graphic Design</span>
+            <span className="large">User Interface Engineer</span>
+            <span className="small">with a background in</span>
+            <span className="large">Graphic Design</span>
           </TextBand>
+          <Description>
+            I came to <strong>New York City</strong> to study <strong>graphic design</strong> at the <strong>School of Visual Arts</strong>.
+            I stuck around to develop and maintain sites for clients like <strong>Samsung</strong> and <strong>Verizon</strong> at <strong>The Barbarian Group</strong> and <strong>Rokkan</strong>.
+            Now I work at <strong>Peloton</strong> building <strong>UI components</strong> and <strong>design systems</strong>. In my free time I play <strong>shuffleboard at Royal Palms</strong>.
+          </Description>
           <LinkGroup />
         </Container>
       </Main>

@@ -36,6 +36,7 @@ const LinkGroup = () => (
 export default LinkGroup;
 
 const StyledLinkGroup = styled.ul`
+  border-top: 2px solid black;
   display: flex;
   font-family: 'Lato', sans-serif;
   font-size: 12px;
@@ -49,6 +50,7 @@ const StyledLinkGroup = styled.ul`
 
   li {
     flex: 1;
+    font-weight: 700;
     text-transform: uppercase;
     padding: 16px 16px 8px;
 
@@ -95,6 +97,7 @@ const StyledLinkGroup = styled.ul`
         }
 
         span {
+          background-color: gold;
           transform: translate3d(4px, 0, 0);
         }
       }

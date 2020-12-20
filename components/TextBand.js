@@ -8,13 +8,15 @@ export default TextBand;
 
 const StyledTextBand = styled.h2`
   align-items: center;
+  background-color: gold;
   border-bottom: 2px solid black;
   border-top-width: 6px;
   display: flex;
   font-family: 'Lato', sans-serif;
   font-size: 18px;
+  font-weight: 700;
   justify-content: center;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.02em;
   padding: 16px 0;
   text-transform: uppercase;
   width: 100%;
