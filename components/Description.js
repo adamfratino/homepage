@@ -22,6 +22,11 @@ const StyledDescription = styled.p`
   display: inline-block;
   width: 100%;
 
+  @media (max-width: 700px) {
+    font-size: 14px;
+    padding: 32px 0;
+  }
+
   strong {
     font-weight: 600;
   }

@@ -23,6 +23,7 @@ const StyledTextBand = styled.h2`
 
   @media (max-width: 700px) {
     display: inline;
+    background: transparent;
 
     .large:first-of-type {
       display: block;
