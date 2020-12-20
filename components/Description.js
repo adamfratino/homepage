@@ -22,7 +22,7 @@ const StyledDescription = styled.p`
 
   @media (max-width: 700px) {
     font-size: 14px;
-    padding: 32px 0;
+    padding: 32px 0 16px;
   }
 
   strong {

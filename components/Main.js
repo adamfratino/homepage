@@ -7,6 +7,10 @@ const Main = styled.main`
   height: 100vh;
   justify-content: center;
   width: 100vw;
+
+  @media (max-width: 700px) {
+    height: auto;
+  }
 `;
 
 export default Main;

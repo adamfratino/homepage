@@ -24,7 +24,7 @@ const StyledContact = styled.p`
 
   @media (max-width: 700px) {
     font-size: 14px;
-    padding: 32px 0;
+    padding: 0 0 32px;
   }
 
   a {

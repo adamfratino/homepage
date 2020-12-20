@@ -4,7 +4,6 @@ const Container = styled.section`
   display: inline-flex;
   filter: blur(${props => props.isLoaded ? 0 : `200px`});
   flex-direction: column;
-  height: 100vh;
   justify-content: center;
   opacity: ${props => props.isLoaded ? 1 : 0};
   padding: 24px;
