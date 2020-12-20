@@ -20,6 +20,7 @@ const StyledTitle = styled.h1`
   font-family: 'Martel', serif;
   font-size: 96px;
   font-weight: 900;
+  letter-spacing: -2px;
   position: relative;
 
   &::before,
