@@ -47,7 +47,7 @@ const Home = () => {
             Now I work at <strong>Peloton</strong> building <strong>UI components</strong> and <strong>design systems</strong>.
           </Description>
           <Contact>
-            Interested in collaborating? Wanna saying hello? <a href="mailto:hello@fratino.dev">Hit&nbsp;me&nbsp;up</a>!&nbsp;👋
+            Interested in collaborating? Wanna say hello? <a href="mailto:hello@fratino.dev">Hit&nbsp;me&nbsp;up</a>!&nbsp;👋
           </Contact>
           <LinkGroup />
         </Container>
