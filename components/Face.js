@@ -12,7 +12,7 @@ const Face = ({ height }) => (
     >
       <style>
         {
-          ".prefix__st0,.prefix__st1,.prefix__st2,.prefix__st4{stroke:#000;stroke-miterlimit:10}.prefix__st0{fill:#fcb670;stroke-width:2}.prefix__st1,.prefix__st2,.prefix__st4{fill:#c65b36}.prefix__st2,.prefix__st4{fill:#fcb670}.prefix__st4{fill:none}.prefix__st5{stroke-width:2}.prefix__st5,.prefix__st6,.prefix__st7,.prefix__st8{fill:#564417;stroke:#000;stroke-miterlimit:10}.prefix__st7,.prefix__st8{fill:#e2794b}.prefix__st8{fill:gold}.prefix__st9{fill:none;stroke-width:1.25}.prefix__st10,.prefix__st11,.prefix__st9{stroke:#000;stroke-miterlimit:10}.prefix__st10{fill:none;stroke-width:.5}.prefix__st11{fill:#fff}"
+          '.prefix__st0,.prefix__st1,.prefix__st2,.prefix__st4{stroke:#000;stroke-miterlimit:10}.prefix__st0{fill:#fcb670;stroke-width:2}.prefix__st1,.prefix__st2,.prefix__st4{fill:#c65b36}.prefix__st2,.prefix__st4{fill:#fcb670}.prefix__st4{fill:none}.prefix__st5{stroke-width:2}.prefix__st5,.prefix__st6,.prefix__st7,.prefix__st8{fill:#564417;stroke:#000;stroke-miterlimit:10}.prefix__st7,.prefix__st8{fill:#e2794b}.prefix__st8{fill:gold}.prefix__st9{fill:none;stroke-width:1.25}.prefix__st10,.prefix__st11,.prefix__st9{stroke:#000;stroke-miterlimit:10}.prefix__st10{fill:none;stroke-width:.5}.prefix__st11{fill:#fff}'
         }
       </style>
       <path
@@ -23,13 +23,7 @@ const Face = ({ height }) => (
         className="prefix__st1"
         d="M18.82 136.48a7.16 7.16 0 00-.36 4.17l2.74 15.24c.42 2.34 3.19 3.36 5.03 1.86l-1.83-21.07-2.79-1.3c-1.07-.5-2.34 0-2.79 1.1z"
       />
-      <ellipse
-        className="prefix__st2"
-        cx={25.29}
-        cy={150.14}
-        rx={3.15}
-        ry={3.85}
-      />
+      <ellipse className="prefix__st2" cx={25.29} cy={150.14} rx={3.15} ry={3.85} />
       <path
         className="prefix__st0"
         d="M134.54 133.96l2.99-2.99a3.386 3.386 0 014.8 0 7.161 7.161 0 011.89 6.76l-2.97 15.2c-.39 1.58-.58 3.21-.58 4.84v3.16c0 1.83-.73 3.59-2.03 4.89l-.06.06a3.235 3.235 0 01-4.57 0l-1.91-1.91 1.73-21.29.71-8.72z"
@@ -38,13 +32,7 @@ const Face = ({ height }) => (
         className="prefix__st1"
         d="M140.5 136.48c.53 1.32.66 2.77.36 4.17l-2.74 15.24c-.42 2.34-3.19 3.36-5.03 1.86l1.83-21.07 2.79-1.3c1.07-.5 2.35 0 2.79 1.1z"
       />
-      <ellipse
-        className="prefix__st2"
-        cx={134.04}
-        cy={150.14}
-        rx={3.15}
-        ry={3.85}
-      />
+      <ellipse className="prefix__st2" cx={134.04} cy={150.14} rx={3.15} ry={3.85} />
       <path
         d="M128.8 187.02c-1.81 14.8-13.66 30.4-26.34 34.68s-33.21 4.28-45.62 0-24.11-19.88-26-34.67c-1.89-14.79-3.61-32.08-3.82-38.43s-.9-13.46-1.52-15.82c-.63-2.36-1.38-25.21-1.68-50.8-.3-25.58 21.96-46.51 49.46-46.51h12.24c27.5 0 49.88 20.81 49.73 46.25-.15 25.44-.78 48.1-1.39 50.37-.61 2.27-1.26 9.5-1.44 16.07-.19 6.58-1.81 24.06-3.62 38.86z"
         fill="#fcb670"
@@ -128,7 +116,7 @@ export default Face;
 
 const FaceContainer = styled.div`
   display: flex;
-  height: ${props => props.height + `px`};
+  height: ${(props) => props.height + `px`};
   justify-content: center;
   margin-bottom: 32px;
 

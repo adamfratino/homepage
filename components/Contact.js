@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-const Contact = ({ children }) => (
-  <StyledContact>{children}</StyledContact>
-);
+const Contact = ({ children }) => <StyledContact>{children}</StyledContact>;
 
 export default Contact;
 

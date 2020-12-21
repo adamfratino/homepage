@@ -6,7 +6,9 @@ const titleColorDark = `#333`;
 const hoverDistance = `0.25`;
 
 const Title = ({ text, className }) => (
-  <StyledTitle className={className} text={text}>{text}</StyledTitle>
+  <StyledTitle className={className} text={text}>
+    {text}
+  </StyledTitle>
 );
 
 const StyledTitle = styled.h1`
@@ -25,7 +27,7 @@ const StyledTitle = styled.h1`
 
   &::before,
   &::after {
-    content: "${props => props.text}";
+    content: '${(props) => props.text}';
     bottom: 0;
     font-size: 100%;
     left: 0;
@@ -37,7 +39,10 @@ const StyledTitle = styled.h1`
 
   &::before {
     color: ${titleColorPrimary};
-    transform: translate(${hoverDistance * 0.75 + 'rem'}, ${hoverDistance * 0.75 + 'rem'});
+    transform: translate(
+      ${hoverDistance * 0.75 + 'rem'},
+      ${hoverDistance * 0.75 + 'rem'}
+    );
 
     @media (min-width: 700px) {
       transform: translate(${hoverDistance + 'rem'}, ${hoverDistance + 'rem'});
@@ -46,7 +51,10 @@ const StyledTitle = styled.h1`
 
   &::after {
     color: ${titleColorLight};
-    transform: translate(-${hoverDistance * 0.75 + 'rem'}, -${hoverDistance * 0.75 + 'rem'});
+    transform: translate(
+      -${hoverDistance * 0.75 + 'rem'},
+      -${hoverDistance * 0.75 + 'rem'}
+    );
 
     @media (min-width: 700px) {
       transform: translate(-${hoverDistance + 'rem'}, -${hoverDistance + 'rem'});

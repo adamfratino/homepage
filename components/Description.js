@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-const Description = ({ children }) => (
-  <StyledDescription>{children}</StyledDescription>
-);
+const Description = ({ children }) => <StyledDescription>{children}</StyledDescription>;
 
 export default Description;
 

@@ -51,13 +51,13 @@ const StyledLinkGroup = styled.ul`
   li {
     position: relative;
 
-    @media (min-width: 700px) {      
+    @media (min-width: 700px) {
       flex: 1;
     }
 
     &:not(:last-of-type) {
       margin-bottom: 16px;
-      
+
       @media (min-width: 700px) {
         margin-bottom: 0;
         margin-right: 16px;

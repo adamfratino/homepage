@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-const TextBand = ({ children }) => (
-  <StyledTextBand>{ children }</StyledTextBand>
-);
+const TextBand = ({ children }) => <StyledTextBand>{children}</StyledTextBand>;
 
 export default TextBand;
 
@@ -38,7 +36,7 @@ const StyledTextBand = styled.h2`
       font-size: 18px;
     }
   }
-  
+
   .small {
     font-size: 12px;
     text-transform: none;
