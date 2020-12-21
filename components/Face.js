@@ -9,7 +9,6 @@ const Face = ({ height }) => (
       y={0}
       viewBox="0 0 153.86 243.01"
       xmlSpace="preserve"
-      {...props}
     >
       <style>
         {
