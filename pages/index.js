@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
-import { Contact, Container, Description, LinkGroup, Main, TextBand, Title } from '../components';
+import { Contact, Container, Description, Face, LinkGroup, Main, TextBand, Title } from '../components';
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
@@ -33,6 +33,7 @@ const Home = () => {
 
       <Main>
         <Container isLoaded={isLoaded}>
+          <Face height={320} />
           <Title text="adam fratino" className="is-active" />
           <TextBand>
             <span className="large">User Interface Engineer</span>
