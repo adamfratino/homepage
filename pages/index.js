@@ -33,7 +33,7 @@ const Home = () => {
 
       <Main>
         <Container isLoaded={isLoaded}>
-          <Face height={320} />
+          <Face height={400} />
           <Title text="adam fratino" className="is-active" />
           <TextBand>
             <span className="large">User Interface Engineer</span>
