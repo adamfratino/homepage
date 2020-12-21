@@ -29,8 +29,4 @@ const StyledContact = styled.p`
       background-color: gold;
     }
   }
-
-  .wave {
-    margin-left: 8px;
-  }
 `;

@@ -38,7 +38,6 @@ const StyledTitle = styled.h1`
     position: absolute;
     right: 0;
     top: 0;
-    transition: all 150ms ease;
     z-index: -1;
   }
 

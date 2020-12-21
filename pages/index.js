@@ -46,8 +46,7 @@ const Home = () => {
             Now I work at <strong>Peloton</strong> building <strong>UI components</strong> and <strong>design systems</strong>.
           </Description>
           <Contact>
-            If there's anything else you wanna know, <a href="mailto:hello@adamfratino.com">hit me up</a>!
-            <span className="wave">👋</span>
+            Interested in collaborating? Wanna saying hello? <a href="mailto:hello@adamfratino.com">Hit&nbsp;me&nbsp;up</a>!&nbsp;👋
           </Contact>
           <LinkGroup />
         </Container>
