@@ -6,14 +6,8 @@ const titleColorDark = `#333`;
 const hoverDistance = `0.25`;
 
 const Title = ({ text, className }) => (
-  <TitleContainer>
-    <StyledTitle className={className} text={text}>{text}</StyledTitle>
-  </TitleContainer>
+  <StyledTitle className={className} text={text}>{text}</StyledTitle>
 );
-
-const TitleContainer = styled.div`
-  border-bottom: 2px solid black;
-`;
 
 const StyledTitle = styled.h1`
   color: ${titleColorDark};

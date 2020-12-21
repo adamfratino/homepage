@@ -9,7 +9,7 @@ export default TextBand;
 const StyledTextBand = styled.h2`
   background-color: gold;
   border-bottom: 2px solid black;
-  border-top-width: 6px;
+  border-top: 2px solid black;
   clip-path: polygon(0% 0%, 100% 0%, 98% 50%, 100% 100%, 0% 100%, 2% 50%);
   display: inline;
   font-family: 'Lato', sans-serif;
