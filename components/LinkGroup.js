@@ -7,28 +7,28 @@ import { faFile } from '@fortawesome/free-regular-svg-icons';
 const LinkGroup = () => (
   <StyledLinkGroup>
     <li>
-      <a href="//github.com/adamfratino" target="_blank" rel="nofollow">
+      <Link href="//github.com/adamfratino" target="_blank" rel="nofollow">
         <Icon icon={faGithub} />
         <span>Github</span>
-      </a>
+      </Link>
     </li>
     <li>
-      <a href="//codepen.io/adamfratino" target="_blank" rel="nofollow">
+      <Link href="//codepen.io/adamfratino" target="_blank" rel="nofollow">
         <Icon icon={faCodepen} />
         <span>CodePen</span>
-      </a>
+      </Link>
     </li>
     <li>
-      <a href="//cargocollective.com/adamfratino" target="_blank" rel="nofollow">
+      <Link href="//cargocollective.com/adamfratino" target="_blank" rel="nofollow">
         <Icon icon={faBolt} />
         <span>Cargo</span>
-      </a>
+      </Link>
     </li>
     <li>
-      <a href="/resume.pdf" target="_blank">
+      <Link href="/resume.pdf" target="_blank">
         <Icon icon={faFile} />
         <span>Resume</span>
-      </a>
+      </Link>
     </li>
   </StyledLinkGroup>
 );
@@ -36,80 +36,81 @@ const LinkGroup = () => (
 export default LinkGroup;
 
 const StyledLinkGroup = styled.ul`
-  border-top: 2px solid black;
   display: flex;
+  flex-direction: column;
   font-family: 'Lato', sans-serif;
   font-size: 12px;
   justify-content: center;
   letter-spacing: 0.05em;
   width: 100%;
 
-  @media (max-width: 700px) {
-    flex-direction: column;
+  @media (min-width: 700px) {
+    flex-direction: initial;
   }
 
   li {
-    flex: 1;
-    font-weight: 700;
-    text-transform: uppercase;
-    padding: 16px 16px 8px;
+    position: relative;
 
-    @media (max-width: 700px) {
-      background: gold;
-      border: 2px solid black;
-      border-top: none;
-      padding-bottom: 16px;
-
-      &:not(:first-of-type) {
-        border-top: 2px solid black;
-      }
+    @media (min-width: 700px) {      
+      flex: 1;
     }
-    
+
     &:not(:last-of-type) {
-      border-right: 2px solid black;
-      margin-bottom: 8px;
+      margin-bottom: 16px;
+      
+      @media (min-width: 700px) {
+        margin-bottom: 0;
+        margin-right: 16px;
+      }
+    }
+  }
+`;
+
+const Link = styled.a`
+  align-items: center;
+  background-color: gold;
+  border: 2px solid black;
+  color: black;
+  display: flex;
+  font-weight: 700;
+  height: 48px;
+  justify-content: center;
+  padding: 12px;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &::after {
+    background-color: black;
+    bottom: 0;
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    transform: translate3d(4px, 4px, 0);
+    width: 100%;
+    z-index: -1;
+  }
+
+  &:hover {
+    &::after {
+      transform: translate3d(6px, 6px, 0);
+    }
+  }
+
+  &:active {
+    &::after {
+      transform: translate3d(2px, 2px, 0);
+    }
+  }
+
+  svg,
+    span {
+      transition: all 100ms linear;
     }
 
-    a {
-      align-items: center;
-      color: black;
-      display: flex;
-      height: 24px;
-      justify-content: center;
-      text-decoration: none;
-
-      @media (max-width: 700px) {
-        &:active {
-          background: transparent;
-        }
-
-        &:hover {
-          svg,
-          span {
-            transform: none;
-          }
-        }
-      }
-
-      &:hover {
-        svg {
-          transform: scale(1.25);
-        }
-
-        span {
-          transform: translate3d(4px, 0, 0);
-        }
-      }
-
-      svg,
-      span {
-        transition: all 100ms ease;
-      }
-
-      svg {
-        height: 100%;
-        margin-right: 8px;
-      }
+    svg {
+      height: 100%;
+      margin-right: 8px;
     }
   }
 `;

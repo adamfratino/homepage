@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const titleColorLight = `gold`;
 const titleColorPrimary = `tomato`;
 const titleColorDark = `#333`;
-const hoverDistance = `0.25rem`;
+const hoverDistance = `0.25`;
 
 const Title = ({ text, className }) => (
   <TitleContainer>
@@ -18,10 +18,16 @@ const TitleContainer = styled.div`
 const StyledTitle = styled.h1`
   color: ${titleColorDark};
   font-family: 'Martel', serif;
-  font-size: 96px;
+  font-size: 42px;
   font-weight: 900;
   letter-spacing: -2px;
+  margin-bottom: 8px;
   position: relative;
+  text-align: center;
+
+  @media (min-width: 700px) {
+    font-size: 96px;
+  }
 
   &::before,
   &::after {
@@ -38,12 +44,20 @@ const StyledTitle = styled.h1`
 
   &::before {
     color: ${titleColorPrimary};
-    transform: translate(${hoverDistance}, ${hoverDistance});
+    transform: translate(${hoverDistance * 0.75 + 'rem'}, ${hoverDistance * 0.75 + 'rem'});
+
+    @media (min-width: 700px) {
+      transform: translate(${hoverDistance + 'rem'}, ${hoverDistance + 'rem'});
+    }
   }
 
   &::after {
     color: ${titleColorLight};
-    transform: translate(-${hoverDistance}, -${hoverDistance});
+    transform: translate(-${hoverDistance * 0.75 + 'rem'}, -${hoverDistance * 0.75 + 'rem'});
+
+    @media (min-width: 700px) {
+      transform: translate(-${hoverDistance + 'rem'}, -${hoverDistance + 'rem'});
+    }
   }
 `;
 

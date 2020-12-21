@@ -1,30 +1,23 @@
 import styled from 'styled-components';
 
 const Contact = ({ children }) => (
-  <ContactContainer>
-    <StyledContact>{children}</StyledContact>
-  </ContactContainer>
+  <StyledContact>{children}</StyledContact>
 );
 
 export default Contact;
 
-const ContactContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-`;
-
 const StyledContact = styled.p`
-  font-family: 'Lato', sans-serif;
-  line-height: 1.6;
-  padding: 0 16px 32px;
-  max-width: 625px;
   display: inline-block;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 625px;
+  padding: 0 0 32px;
   width: 100%;
 
-  @media (max-width: 700px) {
-    font-size: 14px;
-    padding: 0 0 32px;
+  @media (min-width: 700px) {
+    font-size: initial;
+    padding: 0 16px 32px;
   }
 
   a {

@@ -7,42 +7,45 @@ const TextBand = ({ children }) => (
 export default TextBand;
 
 const StyledTextBand = styled.h2`
-  align-items: center;
   background-color: gold;
   border-bottom: 2px solid black;
   border-top-width: 6px;
-  display: flex;
+  display: inline;
   font-family: 'Lato', sans-serif;
   font-size: 18px;
   font-weight: 700;
-  justify-content: center;
   letter-spacing: 0.02em;
   padding: 16px 0;
+  text-align: center;
   text-transform: uppercase;
   width: 100%;
 
-  @media (max-width: 700px) {
-    display: inline;
-    background: transparent;
+  @media (min-width: 700px) {
+    align-items: flex-end;
+    display: flex;
+    justify-content: center;
+  }
 
-    .large:first-of-type {
-      display: block;
-    }
+  .large:first-of-type {
+    display: block;
+  }
 
-    .large:last-of-type {
-      font-size: 12px;
+  .large:last-of-type {
+    font-size: 12px;
+
+    @media (min-width: 700px) {
+      font-size: 18px;
     }
   }
   
   .small {
-    font-size: 75%;
+    font-size: 12px;
     text-transform: none;
     margin: 0 0.35em;
+    text-align: center;
 
-    @media (max-width: 700px) {
-      font-size: 12px;
-      margin-left: 0;
-      text-transform: uppercase;
+    @media (min-width: 700px) {
+      font-size: 75%;
     }
   }
 `;

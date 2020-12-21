@@ -1,28 +1,21 @@
 import styled from 'styled-components';
 
 const Description = ({ children }) => (
-  <DescriptionContainer>
-    <StyledDescription>{children}</StyledDescription>
-  </DescriptionContainer>
+  <StyledDescription>{children}</StyledDescription>
 );
 
 export default Description;
 
-const DescriptionContainer = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
 const StyledDescription = styled.p`
   font-family: 'Lato', sans-serif;
+  font-size: 14px;
   line-height: 1.6;
-  padding: 32px 16px 16px;
-  max-width: 620px;
-  display: inline-block;
+  padding: 32px 0 16px;
+  max-width: 675px;
 
-  @media (max-width: 700px) {
-    font-size: 14px;
-    padding: 32px 0 16px;
+  @media (min-width: 700px) {
+    font-size: initial;
+    padding: 32px 16px 16px;
   }
 
   strong {
