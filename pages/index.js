@@ -18,6 +18,7 @@ const Home = () => {
     <>
       <Head>
         <title>Adam Fratino : UI Engineer</title>
+        <meta name="description" content="User interface engineer with a background in graphic design." />
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;900&family=Martel:wght@900&display=swap" rel="stylesheet" />
