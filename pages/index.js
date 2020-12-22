@@ -1,5 +1,5 @@
-import Head from 'next/head';
-import { useEffect, useState } from 'react';
+import Head from 'next/head'
+import { useEffect, useState } from 'react'
 import {
   Contact,
   Container,
@@ -9,19 +9,19 @@ import {
   Main,
   TextBand,
   Title,
-} from '../components';
-import { createGlobalStyle } from 'styled-components';
+} from '../components'
+import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
   }
-`;
+`
 
 const Home = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false)
 
-  useEffect(() => setIsLoaded(true), []);
+  useEffect(() => setIsLoaded(true), [])
 
   return (
     <>
@@ -67,13 +67,13 @@ const Home = () => {
           </Description>
           <Contact>
             Interested in collaborating? Wanna say hello?{' '}
-            <a href="mailto:hello@fratino.dev">Hit&nbsp;me&nbsp;up</a>!&nbsp;👋
+            <a href="mailto:hello@fratino.dev">Hit&nbsp;me&nbsp;up</a>!&nbsp;✌️
           </Contact>
           <LinkGroup />
         </Container>
       </Main>
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
