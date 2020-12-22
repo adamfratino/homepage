@@ -1,8 +1,8 @@
-import styled from 'styled-components';
-import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
-import { faCodepen, faGithub } from '@fortawesome/free-brands-svg-icons';
-import { faBolt } from '@fortawesome/free-solid-svg-icons';
-import { faFile } from '@fortawesome/free-regular-svg-icons';
+import styled from 'styled-components'
+import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
+import { faCodepen, faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faBolt } from '@fortawesome/free-solid-svg-icons'
+import { faFile } from '@fortawesome/free-regular-svg-icons'
 
 const LinkGroup = () => (
   <StyledLinkGroup>
@@ -31,9 +31,9 @@ const LinkGroup = () => (
       </Link>
     </li>
   </StyledLinkGroup>
-);
+)
 
-export default LinkGroup;
+export default LinkGroup
 
 const StyledLinkGroup = styled.ul`
   display: flex;
@@ -64,7 +64,7 @@ const StyledLinkGroup = styled.ul`
       }
     }
   }
-`;
+`
 
 const Link = styled.a`
   align-items: center;
@@ -98,4 +98,4 @@ const Link = styled.a`
       margin-right: 8px;
     }
   }
-`;
+`
