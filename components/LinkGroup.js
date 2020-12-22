@@ -70,6 +70,7 @@ const Link = styled.a`
   align-items: center;
   background-color: gold;
   border: 2px solid black;
+  box-shadow: 4px 4px 0 0 black;
   color: black;
   display: flex;
   font-weight: 700;
@@ -79,28 +80,12 @@ const Link = styled.a`
   text-decoration: none;
   text-transform: uppercase;
 
-  &::after {
-    background-color: black;
-    bottom: 0;
-    content: "";
-    height: 100%;
-    left: 0;
-    position: absolute;
-    transform: translate3d(4px, 4px, 0);
-    width: 100%;
-    z-index: -1;
-  }
-
   &:hover {
-    &::after {
-      transform: translate3d(6px, 6px, 0);
-    }
+    box-shadow: 6px 6px 0 0 black;
   }
 
   &:active {
-    &::after {
-      transform: translate3d(2px, 2px, 0);
-    }
+    box-shadow: 2px 2px 0 0 black;
   }
 
   svg,
