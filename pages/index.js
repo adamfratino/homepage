@@ -1,5 +1,5 @@
-import Head from 'next/head';
-import { useEffect, useState } from 'react';
+import Head from 'next/head'
+import { useEffect, useState } from 'react'
 import {
   Contact,
   Container,
@@ -9,19 +9,19 @@ import {
   Main,
   TextBand,
   Title,
-} from '../components';
-import { createGlobalStyle } from 'styled-components';
+} from '../components'
+import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
   }
-`;
+`
 
 const Home = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false)
 
-  useEffect(() => setIsLoaded(true), []);
+  useEffect(() => setIsLoaded(true), [])
 
   return (
     <>
@@ -57,13 +57,11 @@ const Home = () => {
             <span className="large">Graphic Design</span>
           </TextBand>
           <Description>
-            I came to <strong>New York City</strong> to study{' '}
-            <strong>graphic design</strong> at the <strong>School of Visual Arts</strong>.
-            I stuck around to develop and maintain sites for clients like{' '}
-            <strong>Samsung</strong> and <strong>Verizon</strong> at{' '}
+            I came to <strong>New York City</strong> to study graphic design at the{' '}
+            <strong>School of Visual Arts</strong>. I stuck around to develop and maintain
+            sites for clients like Samsung and Verizon at{' '}
             <strong>The Barbarian Group</strong> and <strong>Rokkan</strong>. Now I work
-            at <strong>Peloton</strong> building <strong>UI components</strong> and{' '}
-            <strong>design systems</strong>.
+            at <strong>Peloton</strong> building UI components and design systems.
           </Description>
           <Contact>
             Interested in collaborating? Wanna say hello?{' '}
@@ -73,7 +71,7 @@ const Home = () => {
         </Container>
       </Main>
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

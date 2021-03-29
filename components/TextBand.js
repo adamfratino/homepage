@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-const TextBand = ({ children }) => <StyledTextBand>{children}</StyledTextBand>;
+const TextBand = ({ children }) => <StyledTextBand>{children}</StyledTextBand>
 
-export default TextBand;
+export default TextBand
 
 const StyledTextBand = styled.h2`
   background-color: gold;
@@ -20,7 +20,7 @@ const StyledTextBand = styled.h2`
   width: 100%;
 
   @media (min-width: 700px) {
-    align-items: flex-end;
+    align-items: center;
     display: flex;
     justify-content: center;
   }
@@ -31,9 +31,11 @@ const StyledTextBand = styled.h2`
 
   .large:last-of-type {
     font-size: 12px;
+    text-transform: lowercase;
 
     @media (min-width: 700px) {
       font-size: 18px;
+      text-transform: uppercase;
     }
   }
 
@@ -45,6 +47,7 @@ const StyledTextBand = styled.h2`
 
     @media (min-width: 700px) {
       font-size: 75%;
+      font-weight: normal;
     }
   }
-`;
+`
