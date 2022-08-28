@@ -1,14 +1,16 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-const Description = ({ children }) => <StyledDescription>{children}</StyledDescription>;
+const Description = ({ children }) => <StyledDescription>{children}</StyledDescription>
 
-export default Description;
+export default Description
 
 const StyledDescription = styled.p`
   font-family: 'Lato', sans-serif;
   font-size: 14px;
   line-height: 1.6;
-  padding: 32px 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   max-width: 675px;
 
   @media (min-width: 700px) {
@@ -19,4 +21,4 @@ const StyledDescription = styled.p`
   strong {
     font-weight: 600;
   }
-`;
+`

@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
+import styled from 'styled-components'
 import {
   Contact,
   Container,
@@ -49,25 +50,52 @@ const Home = () => {
 
       <Main>
         <Container isLoaded={isLoaded}>
-          <Face height={400} />
-          <Title text="adam fratino" className="is-active" />
-          <TextBand>
-            <span className="large">User Interface Engineer</span>
-            <span className="small">with a background in</span>
-            <span className="large">Graphic Design</span>
-          </TextBand>
-          <Description>
-            I came to <strong>New York City</strong> to study graphic design at the{' '}
-            <strong>School of Visual Arts</strong>. I stuck around to develop and maintain
-            sites for clients like Samsung and Verizon at{' '}
-            <strong>The Barbarian Group</strong> and <strong>Rokkan</strong>. Now I work
-            at <strong>Peloton</strong> building UI components and design systems.
-          </Description>
-          <Contact>
-            Interested in collaborating? Wanna say hello?{' '}
-            <a href="mailto:hello@fratino.dev">Hit&nbsp;me&nbsp;up</a>!&nbsp;👋
-          </Contact>
-          <LinkGroup />
+          <InnerContainer>
+            <div className="face-container">
+              <Face height={460} />
+            </div>
+            <div>
+              <Title text="adam fratino" className="is-active" />
+              <TextBand>
+                <span className="large">User Interface Engineer</span>
+                <span className="small">with a background in</span>
+                <span className="large">Graphic Design</span>
+              </TextBand>
+              <Description>
+                <div>
+                  I came to <strong>New York City</strong> to study graphic design at the{' '}
+                  <strong>School of Visual Arts</strong>. I stuck around to develop and
+                  maintain sites for clients like Samsung and Verizon at{' '}
+                  <strong>The Barbarian Group</strong> and <strong>Rokkan</strong>. Now I
+                  work at <strong>Peloton</strong> building UI components and design
+                  systems.
+                </div>
+                <div>
+                  I've been really into <strong>Storybook</strong> lately, and I was lucky
+                  enough to sit down and chat with them about{' '}
+                  <InlineLink
+                    href="https://www.youtube.com/watch?v=SXEu_C0hMjY"
+                    target="_blank"
+                  >
+                    building Peloton's design system
+                  </InlineLink>
+                  . I also recently released a Storybook addon to{' '}
+                  <InlineLink
+                    href="https://storybook.js.org/addons/storybook-addon-responsive-columns/"
+                    target="_blank"
+                  >
+                    add responsive columns to your stories
+                  </InlineLink>
+                  .
+                </div>
+              </Description>
+              <Contact>
+                Interested in collaborating? Wanna say hello?{' '}
+                <a href="mailto:hello@fratino.dev">Hit&nbsp;me&nbsp;up</a>!&nbsp;👋
+              </Contact>
+              <LinkGroup />
+            </div>
+          </InnerContainer>
         </Container>
       </Main>
     </>
@@ -75,3 +103,32 @@ const Home = () => {
 }
 
 export default Home
+
+const InnerContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 1200px) {
+    flex-direction: row;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .face-container {
+    margin-bottom: 32px;
+
+    @media (min-width: 1200px) {
+      margin-block: 48px 0;
+    }
+  }
+`
+
+const InlineLink = styled.a`
+  color: black;
+  text-decoration: underline;
+  font-weight: bold;
+
+  &:hover {
+    background-color: gold;
+  }
+`
