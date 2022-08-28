@@ -1,12 +1,5 @@
 import Head from 'next/head'
 import styled from 'styled-components'
-import { createGlobalStyle } from 'styled-components'
-
-const GlobalStyle = createGlobalStyle`
-  * {
-    box-sizing: border-box;
-  }
-`
 
 const Columns = () => (
   <>
@@ -17,11 +10,6 @@ const Columns = () => (
         content="User interface engineer with a background in graphic design."
       />
       <link rel="icon" href="/favicon.ico" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;900&family=Martel:wght@900&display=swap"
-        rel="stylesheet"
-      />
       <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
@@ -29,8 +17,6 @@ const Columns = () => (
         crossOrigin="anonymous"
       />
     </Head>
-
-    <GlobalStyle />
 
     <Container>
       <Grid columns={12} />
@@ -64,6 +50,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
   @media (min-width: 1024px) {
     padding-inline: 24px;
   }
@@ -76,15 +63,19 @@ const StyledGrid = styled.div`
   display: flex;
   gap: 0 8px;
   padding: 24px;
+
   &:first-of-type {
     padding-top: 48px;
   }
+
   &:last-of-type {
     padding-bottom: 48px;
   }
+
   @media (min-width: 768px) {
     gap: 0 16px;
   }
+
   @media (min-width: 1024px) {
     gap: 0 24px;
   }
