@@ -12,10 +12,11 @@ const StyledDescription = styled.p`
   flex-direction: column;
   gap: 16px;
   max-width: 675px;
+  padding-block: 32px 16px;
 
   @media (min-width: 700px) {
     font-size: initial;
-    padding: 32px 16px 16px;
+    padding-inline: 16px;
   }
 
   strong {
