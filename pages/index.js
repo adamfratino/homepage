@@ -27,7 +27,7 @@ const Home = () => {
   return (
     <>
       <Head>
-        <title>Adam Fratino : UI Engineer</title>
+        <title>Adam Fratino : UI/UX Engineer</title>
         <meta
           name="description"
           content="User interface engineer with a background in graphic design."
@@ -53,7 +53,7 @@ const Home = () => {
           <Face height={400} />
           <Title text="adam fratino" className="is-active" />
           <TextBand>
-            <span className="large">User Interface Engineer</span>
+            <span className="large">UI/UX Engineer</span>
             <span className="small">with a background in</span>
             <span className="large">Graphic Design</span>
           </TextBand>
