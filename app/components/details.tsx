@@ -56,6 +56,13 @@ const Details = () => {
             github
           </a>
           &middot;
+          <a
+            href="https://www.linkedin.com/in/adam-fratino-a26868311/"
+            target="_blank"
+          >
+            linkedin
+          </a>
+          &middot;
           <a href="https://cargocollective.com/adamfratino" target="_blank">
             cargo
           </a>
