@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import { Lora, Martel } from "next/font/google";
 
@@ -30,6 +31,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${serif.className} ${display.variable} antialiased`}>
         {children}
+        <Analytics />
       </body>
     </html>
   );
