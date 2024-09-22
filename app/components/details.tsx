@@ -14,11 +14,18 @@ const Paragraph = ({ children }: PropsWithChildren) => (
   <p className="text-paragraph">{children}</p>
 );
 
+const Anchor = ({ children, ...props }: PropsWithChildren) => (
+  <a target="_blank" {...props}>
+    {children}
+  </a>
+);
+
 const ListItem = ({ children }: PropsWithChildren) => (
   <li className="text-sm italic mb-2 last:mb-0">{children}</li>
 );
 
 const markdownStyles = {
+  a: Anchor,
   p: Paragraph,
   li: ListItem,
 };
