@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-family: serif;
+}
+
+a {
+  font-weight: bold;
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+@layer components {
+  .text-title {
+    @apply font-bold text-4xl sm:text-4xl md:text-5xl tracking-tight lg:text-[56px] font-display relative before:-translate-x-0.5 before:translate-y-0.5 before:content-['adam_fratino'] before:absolute before:text-[tomato] before:-z-[1] before:left-0 after:-translate-x-0.5 after:-translate-y-0.5 after:content-['adam_fratino'] after:absolute after:text-[gold] after:-z-[1] after:left-0;
+  }
+
+  .text-paragraph {
+    @apply leading-normal mb-4 last:mb-0;
+  }
+}
