@@ -17,7 +17,11 @@ a {
 
 @layer components {
   .text-title {
-    @apply font-bold text-4xl sm:text-4xl md:text-5xl tracking-tight lg:text-[56px] font-display relative before:-translate-x-0.5 before:translate-y-0.5 before:content-['adam_fratino'] before:absolute before:text-[tomato] before:-z-[1] before:left-0 after:-translate-x-0.5 after:-translate-y-0.5 after:content-['adam_fratino'] after:absolute after:text-[gold] after:-z-[1] after:left-0;
+    @apply font-bold text-4xl sm:text-4xl md:text-5xl tracking-tight lg:text-[72px] font-display relative before:-translate-x-1 before:-translate-y-1 before:content-['adam_fratino'] before:absolute before:text-[tomato] before:-z-[1] before:left-0 after:translate-x-1 after:translate-y-1 after:content-['adam_fratino'] after:absolute after:text-[gold] after:-z-[1] after:left-0;
+    &::before,
+    &::after {
+      -webkit-text-stroke: 1px black;
+    }
   }
 
   .text-paragraph {

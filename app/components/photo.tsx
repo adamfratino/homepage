@@ -23,6 +23,10 @@ const Photo = () => {
           height={640}
           className="h-auto rounded-md max-w-full md:w-auto"
         />
+
+        <h2 className="text-sm mt-2">
+          yet another ux & ui engineer with a background in graphic design
+        </h2>
       </motion.div>
     )
   );

@@ -34,13 +34,9 @@ const Details = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <Title text="adam fratino" className="lg:-m-1" />
+        <Title text="adam fratino" />
 
-        <h2 className="text-sm font-semibold italic">
-          ux & ui engineer with a background in graphic design
-        </h2>
-
-        <div className="border-y border-y-black py-5 mt-5 mb-2">
+        <div className="border-y border-y-black py-5 mt-3 mb-2">
           <Bio components={markdownStyles} />
         </div>
 
