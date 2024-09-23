@@ -1,0 +1,2 @@
+export const PAGE_DURATION_MS = 200;
+export const PAGE_DURATION_S = PAGE_DURATION_MS / 1000;

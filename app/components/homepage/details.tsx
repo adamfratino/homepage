@@ -1,36 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
-import type { PropsWithChildren } from "react";
+import Link from "next/link";
 
-import Title from "./title";
+import { PAGE_DURATION_S } from "@/src/constants/transitions";
+import { useDelayedLoad } from "@/src/hooks/useDelayedLoad";
+import { markdownStyles } from "@/src/markdown";
+
+import Title from "../title";
 import Bio from "./bio.mdx";
 import Technologies from "./technologies.mdx";
 import Hobbies from "./hobbies.mdx";
 
-import { useDelayedLoad } from "@/src/hooks/useDelayedLoad";
-
-const Paragraph = ({ children }: PropsWithChildren) => (
-  <p className="text-paragraph">{children}</p>
-);
-
-const Anchor = ({ children, ...props }: PropsWithChildren) => (
-  <a target="_blank" {...props}>
-    {children}
-  </a>
-);
-
-const ListItem = ({ children }: PropsWithChildren) => (
-  <li className="text-sm italic mb-2 last:mb-0">{children}</li>
-);
-
-const markdownStyles = {
-  a: Anchor,
-  p: Paragraph,
-  li: ListItem,
-};
-
-const Details = () => {
+export const Details = () => {
   const loaded = useDelayedLoad(500);
 
   return (
@@ -39,7 +21,7 @@ const Details = () => {
         className="max-w-xl flex flex-col"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: PAGE_DURATION_S }}
       >
         <Title text="adam fratino" />
 
@@ -66,6 +48,8 @@ const Details = () => {
           <a href="https://cargocollective.com/adamfratino" target="_blank">
             cargo
           </a>
+          &middot;
+          <Link href="/blog">blog</Link>
         </div>
 
         <Technologies components={markdownStyles} />
@@ -77,5 +61,3 @@ const Details = () => {
     )
   );
 };
-
-export default Details;

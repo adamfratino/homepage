@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 
-import Photo from "./components/photo";
-import Details from "./components/details";
+import { Photo, Details } from "./components/homepage";
 
 export const metadata: Metadata = {
   title: "Adam Fratino",

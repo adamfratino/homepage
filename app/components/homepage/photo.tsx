@@ -3,9 +3,10 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
+import { PAGE_DURATION_S } from "@/src/constants/transitions";
 import { useDelayedLoad } from "@/src/hooks/useDelayedLoad";
 
-const Photo = () => {
+export const Photo = () => {
   const loaded = useDelayedLoad(350);
 
   return (
@@ -14,7 +15,7 @@ const Photo = () => {
         className="sticky top-6"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: PAGE_DURATION_S }}
       >
         <Image
           src="/images/adam-fratino-sipping-a-beverage.jpg"
@@ -31,5 +32,3 @@ const Photo = () => {
     )
   );
 };
-
-export default Photo;

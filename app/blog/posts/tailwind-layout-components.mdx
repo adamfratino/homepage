@@ -1,0 +1,27 @@
+**Everyone loves Tailwind**, and why shouldn't they? It's easy to add to a project, has a very shallow learning curve, and it's a breeze to write. But what happens when your project grows and common styling patterns begin to surface? The strengths of the fast-and-loose, highly repeatable, oftentimes verbose syntax of Tailwind may begin to morph into a liability!
+
+Minor UI updates start feeling like a game of **Whac-A-Mole&reg;**, except you're not playing it in an arcade so it's not fun. You begin to long for ye olde days of the bespoke library, where you had a few vaguely-named components with some random style props and you were perfectly fine with it because at least it was strongly typed. But alas, you've made your bed, and now you must lie in the Tailwind bedsheets you drunkenly ordered for laughs off Alibaba last office party. Or do you?
+
+### 1. A brief history of banging your head on your desk trying to position a box
+
+Layout has, is, and always will be a constant, aching thorn in the side of software engineers. If you've been doing this a long time, you most likely remember:
+
+```css
+div {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+```
+
+Extremely non-descript, if not downright deceiving! But also a common and effective pattern for coding layouts before CSS matured (see also: _float_ and _clearfix_). Even though it didn't make sense, it worked consistently, and that made it a valid solution. In fact, it worked so well and was used so often that many developers would create a utility class for it:
+
+```css
+.center-box {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+```
+
+By abstracting the styles into a utility class, a common CSS pattern was now being defined in a single location. Additionally, by defining the class with a name that describes it's behavior, anywhere it's used becomes more semantic. Before the days of frameworks and pre- or post-processors, this was how engineers worked faster.
