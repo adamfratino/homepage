@@ -1,6 +1,6 @@
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
-import Script from "next/script";
+// import Script from "next/script";
 import { Lora, Martel } from "next/font/google";
 
 import "./globals.css";

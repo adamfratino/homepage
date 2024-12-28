@@ -3,8 +3,8 @@ import type { PropsWithChildren } from "react";
 
 import Title from "./title";
 import Bio from "./bio.mdx";
-import Technologies from "./technologies.mdx";
-import Hobbies from "./hobbies.mdx";
+// import Technologies from "./technologies.mdx";
+// import Hobbies from "./hobbies.mdx";
 
 const Paragraph = ({ children }: PropsWithChildren) => (
   <p className="text-paragraph">{children}</p>

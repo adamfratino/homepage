@@ -1,5 +1,3 @@
-import { getSortedNotesData } from "../getSortedNotesData";
-
 import Link from "next/link";
 
 export default function NoteLayout({ children }: React.PropsWithChildren) {
