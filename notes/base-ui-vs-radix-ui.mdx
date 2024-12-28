@@ -1,0 +1,56 @@
+---
+title: "Base UI vs. Radix"
+date: "2024-12-27"
+---
+
+I wish I could say I didn't get so hyped whenever a new unstyled component library gets released, but here we are.
+
+[Base UI](https://base-ui.com/) dropped this month. It's a joint venture from the creators of [Radix](https://www.radix-ui.com/), [Material UI](https://mui.com/material-ui/), and [Floating UI](https://floating-ui.com/), all committed for [the long haul](https://bsky.app/profile/vladmoroz.bsky.social/post/3lcg2iz35v22q). That sounds promising.
+
+But is it worth it? [Codemod](https://codemod.com/) power-users would laugh me out of the room right now, but it's not always easy migrating component libraries, especially in large-scale apps or on larger teams. On top of the code changes and updates to your API, you might find yourself fighting for buy-in, adjusting documentation, hunting down pesky regressions, suffering from lack of adoption, etc. All of these and more loom over the process like a dark cloud, waiting to rain on your migration parade.
+
+In the case of Base UI, I'm going to give it a shot. I'll start with a personal project I've been noodling on, which currently uses Radix under the hood. Thankfully, it doesn't seem like it'll be so terrible in this case. Since some of the Radix squad is working on Base UI, the API's are extremely similar. The components available are nearly identical. The similarities far outweigh the differences, with a couple key differences being improvements IMO:
+
+#### it's a single package
+
+One of the first lines of the Base UI docs reads _"Base UI is tree-shakeable, so your app bundle will contain only the components that you actually use"_. That's pretty darn rad!
+
+It seems Base UI has chosen to stray from the per-component packaging pattern that Radix, Storybook and other libraries prefer. Instead, Base UI uses a "subdirectory" to split components, similar to how you might import components from a monorepo package.
+
+```tsx
+import { Switch } from "@base-ui-components/react/switch";
+```
+
+If you need components from multiple packages, you can just remove the component name at the end of the import.
+
+```tsx
+import { Switch, Toggle } from "@base-ui-components/react";
+```
+
+It mostly boils down to personal preference, but this flexible import pattern combined with a lower dependency footprint in my package.json feels like cleaner pattern, especially in an unfinished library where you might be moving things around.
+
+#### it uses the `render` prop
+
+It's [not new](https://ariakit.org/guide/composition), but the `render` prop as a replacement for the `asChild` prop feels like an upgrade (_sidenote:_ cool to see Base UI giving credit where [it seems due](https://bsky.app/profile/haz.dev/post/3ldmwykckuk2c)). And seeing as how Base UI hasn't included a `Slot` component, I'm guessing they consider the `as` prop to be old news as well.
+
+While both solved the same problem, using a prop to compose components feels less bloated than wrapping one with the other. It's more readable, easier to search for, and feels like it embodies the "we're combined!" aspect of composability.
+
+```tsx
+<Collapse.Trigger render={<Button>collapse me</Button>} />
+```
+
+versus
+
+```tsx
+<Collapse.Trigger>
+  <Button>collapse me</Button>
+</Collapse.Trigger>
+```
+
+The syntax history of polymorphic, composable core components is [storied](https://bsky.app/profile/haz.dev/post/3ldogub3bt22b), where each iteration improved a common development pattern. The `render` prop feels like a natural evolution in reducing API complexity and playing nice with Typescript. It'll be interesting to see if any other libraries follow suit.
+
+§
+
+Both of these changes have the opportunity to (a) increase a codebase's readability, (b) speed up workflows, and (c) simplify the development process. This bodes well for both small and large projects.
+
+I'm excited to begin tinkering to see how these small changes might affect my workflow. The project I'm applying it to (a design system) is still pretty raw, so there'll be a lot of opportunities to discover pain points in the migration process and/or the Base UI library. Lucky me!

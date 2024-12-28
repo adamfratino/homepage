@@ -1,5 +1,6 @@
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Lora, Martel } from "next/font/google";
 
 import "./globals.css";
@@ -12,7 +13,7 @@ const display = Martel({
 });
 
 const serif = Lora({
-  weight: "400",
+  weight: "500",
   subsets: ["latin"],
   display: "swap",
 });
@@ -29,6 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      {/* <Script src="https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/prism.min.js" /> */}
       <body className={`${serif.className} ${display.variable} antialiased`}>
         {children}
         <Analytics />
