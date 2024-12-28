@@ -7,10 +7,9 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata() {
   const notes = getSortedNotesData();
   const noteTitles = notes.map((note) => ({ title: note.title }));
-
   return noteTitles;
 }
 
