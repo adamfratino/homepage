@@ -1,4 +1,13 @@
+import { getSortedNotesData } from "../getSortedNotesData";
+
 import Link from "next/link";
+
+export async function generateMetadata() {
+  const notes = getSortedNotesData();
+  const noteTitles = notes.map((note) => ({ title: note.title }));
+
+  return noteTitles;
+}
 
 export default function NoteLayout({ children }: React.PropsWithChildren) {
   return (

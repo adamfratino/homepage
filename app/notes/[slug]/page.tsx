@@ -7,6 +7,13 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
+export async function generateMetadata({ params }: Props) {
+  const notes = getSortedNotesData();
+  const noteTitles = notes.map((note) => ({ title: note.title }));
+
+  return noteTitles;
+}
+
 function code({ ...props }) {
   const match = /language-(\w+)/.exec(props.className || "");
 
