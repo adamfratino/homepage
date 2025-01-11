@@ -27,7 +27,7 @@ If you need components from multiple packages, you can just remove the component
 import { Switch, Toggle } from "@base-ui-components/react";
 ```
 
-It mostly boils down to personal preference, but this flexible import pattern combined with a lower dependency footprint in my package.json feels like cleaner pattern, especially in an unfinished library where you might be moving things around.
+It mostly boils down to personal preference, but this flexible import pattern combined with a lower dependency footprint in my package.json feels like a cleaner pattern, especially in an unfinished library where you might be moving things around.
 
 #### it uses the `render` prop
 
@@ -42,7 +42,7 @@ While both solved the same problem, using a prop to compose components feels les
 versus
 
 ```tsx
-<Collapse.Trigger>
+<Collapse.Trigger asChild>
   <Button>collapse me</Button>
 </Collapse.Trigger>
 ```
