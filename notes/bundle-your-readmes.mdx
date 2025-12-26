@@ -1,0 +1,41 @@
+---
+title: "Bundle your README files"
+date: "2025-12-26"
+---
+
+Another end to the year, another random blog post. "Regular cadence" is in the eye of the beholder, right?
+
+---
+
+Over the past year I've been dabbling with more agentic design systems, and I'm finally getting close to a point in the process where I can consider bundling and distributing the library. As with everything these days, part of that process is asking myself, "how can my project benefit from the current state of AI without becoming overly-dependent on it? Or even worse, ruined by it?"
+
+One of the many answers to that question I've been toying with is to maintain README files at the component level and bundle them into the package that we will eventually distribute. The reasoning for this is admittedly still washed in more theory than pracice, but in theory **README.md files provide consuming LLM's component context at little-to-no cost**.
+
+Let's take an input component as an example. Here is the current taxonomy for an input component in my design system:
+
+```
+input/
+├── input.tsx           # Component implementation
+├── input.types.ts      # TypeScript types
+├── input.constants.ts  # Default values
+├── input.module.css    # Styles
+├── input.stories.tsx   # Storybook stories
+├── input.test.tsx      # Unit tests
+└── README.md           # This file
+```
+*NOTE: prefixing component files with something like `input.` may also benefit consuming LLM's, but I originally started using this pattern to more easily help me find files when I search in my IDE. Not pictured but occassionally included: `hooks` and `utils`.*
+
+Topics covered in the README include:
+- usage
+- common variants
+- composition
+- props
+- data-attributes
+- CSS variables
+- accessibility
+
+In the limited testing I've done so far, it seems an LLM will pick up this file when scraping a package for context, and leverage the file to be more accurate in it's code suggestions! Pretty neat, right? On the other end, leveraging [AGENTS.md](https://agents.md/) files, creating a README template file for your LLM to reference, and other tricks are available to ensure your LLM is writing accurate and consistent documentation.
+
+Traditionally, I'd be weary to suggest maintaining so many README files in a project that's still being actively built (versus maintained). In my experience, outdated README files can oftentimes be more harmful than no README file at all. In an industry that's moving increasingly fast with the assistance of AI, one might assume the likelihood of a README becoming outdated would increase as well, but it turns out AI is pretty good at writing documentation. Keeping docs (and tests, and stories, etc.) updated as portions of a project evolve has grown simple enough if you ask an LLM to make the appropriate updates at regular intervals.
+
+Will this change the future of our industry? No. But will it possibly strengthen the handshake between manual and automated workflows? Who knows!
