@@ -1,4 +1,4 @@
-import { Group, Separator, Stack } from "@uiid/design-system";
+import { Group, Stack } from "@uiid/design-system";
 
 import { SPACING_SM } from "@/constants/ui";
 import { getRecentPurchases, type Purchase } from "@/lib/bandcamp";
@@ -11,12 +11,13 @@ type PurchaseRowProps = { purchase: Purchase; className?: string };
 function PurchaseRow({ purchase, className }: PurchaseRowProps) {
   return (
     <Group gap={SPACING_SM} ay="center" className={className}>
-      <MonoText weight="bold" render={<a href={purchase.url} target="_blank" />}>
-        {purchase.title}
+      <MonoText
+        weight="bold"
+        render={<a href={purchase.url} target="_blank" />}
+      >
+        {purchase.title},
       </MonoText>
-      <Separator orientation="vertical" />
-      <MonoText>{purchase.artist}</MonoText>
-      <Separator orientation="vertical" />
+      <MonoText>{purchase.artist},</MonoText>
       <MonoText>{formatHomeDate(purchase.purchasedAt)}</MonoText>
     </Group>
   );
@@ -35,7 +36,11 @@ export async function RecentPurchases() {
       <Stack>
         <PurchaseRow purchase={latest} />
         {earlier.map((purchase) => (
-          <PurchaseRow key={purchase.url} purchase={purchase} className="opacity-50" />
+          <PurchaseRow
+            key={purchase.url}
+            purchase={purchase}
+            className="opacity-50"
+          />
         ))}
       </Stack>
     </Group>

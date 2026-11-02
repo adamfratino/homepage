@@ -1,4 +1,4 @@
-import { Group, Separator, Stack } from "@uiid/design-system";
+import { Group, Stack } from "@uiid/design-system";
 
 import { SPACING_SM } from "@/constants/ui";
 import { formatCalendarDate } from "@/lib/format";
@@ -24,18 +24,12 @@ type GameRowProps = { game: TrackedGame; className?: string };
 function GameRow({ game, className }: GameRowProps) {
   return (
     <Group gap={SPACING_SM} ay="center" className={className}>
-      <MonoText weight="bold">{game.title}</MonoText>
+      <MonoText weight="bold">{game.title},</MonoText>
       {game.lastPlayed && (
-        <>
-          <Separator orientation="vertical" />
-          <MonoText>{formatCalendarDate(game.lastPlayed)}</MonoText>
-        </>
+        <MonoText>{formatCalendarDate(game.lastPlayed)},</MonoText>
       )}
       {game.playSeconds !== null && (
-        <>
-          <Separator orientation="vertical" />
-          <MonoText>{formatPlayTime(game.playSeconds)}</MonoText>
-        </>
+        <MonoText>{formatPlayTime(game.playSeconds)}</MonoText>
       )}
     </Group>
   );
@@ -50,9 +44,7 @@ export async function RecentGames({ platform }: RecentGamesProps) {
 
   return (
     <Group gap={SPACING_SM} ay="start">
-      <MonoText render={<h4 />} weight="bold">
-        {PLATFORM_LABEL[platform]}:
-      </MonoText>
+      <MonoText weight="bold">{PLATFORM_LABEL[platform]}:</MonoText>
       <Stack>
         <GameRow game={latest} />
         {earlier.map((game) => (
