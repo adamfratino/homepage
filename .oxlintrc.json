@@ -1,0 +1,27 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "unicorn", "oxc", "import", "react", "jsx-a11y", "nextjs"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2024": true
+  },
+  "settings": {
+    "react": { "version": "19" }
+  },
+  "rules": {
+    // Automatic JSX runtime: React never needs to be in scope.
+    "react/react-in-jsx-scope": "off",
+    // Global stylesheet is a side-effect import in app/layout.tsx.
+    "import/no-unassigned-import": ["warn", { "allow": ["**/*.css"] }],
+    // uiid's `render={<h1 />}` slot pattern passes content through the parent,
+    // which these two rules cannot see, so they flag every slotted heading and link.
+    "jsx-a11y/heading-has-content": "off",
+    "jsx-a11y/control-has-associated-label": "off"
+  },
+  "ignorePatterns": [".next/**", "out/**", "node_modules/**", "next-env.d.ts"]
+}

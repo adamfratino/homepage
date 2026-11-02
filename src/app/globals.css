@@ -1,0 +1,13 @@
+@import "tailwindcss";
+@import "@uiid/design-system/globals.css";
+
+/* More pretty default outline */
+* {
+  outline-color: var(--shade-foreground);
+  outline-offset: 0.25rem;
+}
+
+/* Override @thesvg/react hardcoded brand fills. */
+[data-brand-icon] :where(path, circle, rect, polygon) {
+  fill: var(--shade-foreground);
+}
