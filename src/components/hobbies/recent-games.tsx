@@ -9,7 +9,7 @@ import {
   type TrackedGame,
 } from "@/lib/play-tracker";
 
-import { MonoText } from "@/components/shared/mono-text";
+import { HobbiesText } from "@/components/shared/hobbies-text";
 
 function formatPlayTime(seconds: number): string {
   const minutes = Math.max(1, Math.round(seconds / 60));
@@ -24,12 +24,12 @@ type GameRowProps = { game: TrackedGame; className?: string };
 function GameRow({ game, className }: GameRowProps) {
   return (
     <Group gap={SPACING_SM} ay="center" className={className}>
-      <MonoText weight="bold">{game.title},</MonoText>
+      <HobbiesText weight="bold">{game.title},</HobbiesText>
       {game.lastPlayed && (
-        <MonoText>{formatCalendarDate(game.lastPlayed)},</MonoText>
+        <HobbiesText>{formatCalendarDate(game.lastPlayed)},</HobbiesText>
       )}
       {game.playSeconds !== null && (
-        <MonoText>{formatPlayTime(game.playSeconds)}</MonoText>
+        <HobbiesText>{formatPlayTime(game.playSeconds)}</HobbiesText>
       )}
     </Group>
   );
@@ -37,14 +37,15 @@ function GameRow({ game, className }: GameRowProps) {
 
 type RecentGamesProps = { platform: Platform };
 
-/** The platform label beside its most recent game, with the one before it dimmed underneath. */
 export async function RecentGames({ platform }: RecentGamesProps) {
   const [latest, ...earlier] = await getRecentGames(platform);
   if (!latest) return null;
 
   return (
     <Group gap={SPACING_SM} ay="start">
-      <MonoText weight="bold">{PLATFORM_LABEL[platform]}:</MonoText>
+      <HobbiesText render={<h4 />} weight="bold" className="min-w-8">
+        {PLATFORM_LABEL[platform]}:
+      </HobbiesText>
       <Stack>
         <GameRow game={latest} />
         {earlier.map((game) => (

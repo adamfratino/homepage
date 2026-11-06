@@ -1,6 +1,6 @@
 import { formatHomeDateTime } from "@/lib/format";
 
-import { MonoText } from "@/components/shared/mono-text";
+import { HobbiesText } from "@/components/shared/hobbies-text";
 
 /** Build-time stamp of the latest commit (see next.config.ts); absent only in an unconfigured build. */
 const UPDATED_AT = process.env.SITE_UPDATED_AT;
@@ -9,8 +9,9 @@ const UPDATED_AT = process.env.SITE_UPDATED_AT;
 export function LastUpdated() {
   if (!UPDATED_AT) return null;
   return (
-    <MonoText>
-      Last updated <time dateTime={UPDATED_AT}>{formatHomeDateTime(UPDATED_AT)}</time>
-    </MonoText>
+    <HobbiesText>
+      Last updated{" "}
+      <time dateTime={UPDATED_AT}>{formatHomeDateTime(UPDATED_AT)}</time>
+    </HobbiesText>
   );
 }
