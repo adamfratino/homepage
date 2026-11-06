@@ -1,7 +1,7 @@
 import localFont from "next/font/local";
 import { cx } from "@uiid/design-system";
 
-import { MonoText } from "@/components/shared/mono-text";
+import { HobbiesText } from "@/components/shared/hobbies-text";
 
 // Only ★ ☆ ⯪ live in this file; everything else falls through to the surrounding font.
 const starsFont = localFont({
@@ -23,17 +23,20 @@ export function StarRating({ rating }: StarRatingProps) {
   const clamped = Math.min(10, Math.max(0, Math.round(rating)));
   const full = Math.floor(clamped / 2);
   const half = clamped % 2 === 1;
-  const stars = FULL.repeat(full) + (half ? HALF : "") + EMPTY.repeat(5 - full - (half ? 1 : 0));
+  const stars =
+    FULL.repeat(full) +
+    (half ? HALF : "") +
+    EMPTY.repeat(5 - full - (half ? 1 : 0));
   const label = `${clamped / 2} out of 5 stars`;
 
   return (
-    <MonoText
+    <HobbiesText
       render={<abbr />}
       className={cx(starsFont.className, "no-underline translate-y-0.5")}
       title={label}
       aria-label={label}
     >
       {stars}
-    </MonoText>
+    </HobbiesText>
   );
 }
