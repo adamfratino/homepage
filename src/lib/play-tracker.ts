@@ -11,6 +11,8 @@ export type Platform = "psx" | "ps2" | "ps5";
 
 export const PLATFORM_LABEL: Record<Platform, string> = { psx: "PSX", ps2: "PS2", ps5: "PS5" };
 
+export const PLATFORMS = Object.keys(PLATFORM_LABEL) as Platform[];
+
 const TRACKER_DOCUMENT_ID: Record<Platform, string> = {
   psx: LINEAR_PSX_TRACKER_DOCUMENT_ID,
   ps2: LINEAR_PS2_TRACKER_DOCUMENT_ID,
@@ -95,7 +97,14 @@ export function recentlyPlayedGames(games: TrackedGame[], limit = RECENT_LIMIT):
     .slice(0, limit);
 }
 
-export async function getRecentGames(platform: Platform): Promise<TrackedGame[]> {
+type Tracker = {
+  /** The most recently played games, newest first. */
+  games: TrackedGame[];
+  /** When the tracker document last changed, as an ISO timestamp; null if it could not be loaded. */
+  updatedAt: string | null;
+};
+
+async function getTracker(platform: Platform): Promise<Tracker> {
   "use cache";
   cacheLife("minutes");
   cacheTag(`${platform}-tracker`);
@@ -104,9 +113,25 @@ export async function getRecentGames(platform: Platform): Promise<TrackedGame[]>
   // so a missing key, Linear outage, or reformatted document degrades to "no section" here.
   try {
     const document = await getLinearDocument(TRACKER_DOCUMENT_ID[platform]);
-    return recentlyPlayedGames(parseTrackedGames(document.content));
+    return {
+      games: recentlyPlayedGames(parseTrackedGames(document.content)),
+      updatedAt: document.updatedAt,
+    };
   } catch (error) {
-    console.error(`getRecentGames(${platform}): could not load tracker`, error);
-    return [];
+    console.error(`getTracker(${platform}): could not load tracker`, error);
+    return { games: [], updatedAt: null };
   }
+}
+
+export async function getRecentGames(platform: Platform): Promise<TrackedGame[]> {
+  return (await getTracker(platform)).games;
+}
+
+/**
+ * When a platform's games last changed. The Played column only records a date, so this is the
+ * tracker document's own edit time; null when the platform shows no games.
+ */
+export async function getGamesUpdatedAt(platform: Platform): Promise<string | null> {
+  const { games, updatedAt } = await getTracker(platform);
+  return games.length > 0 ? updatedAt : null;
 }

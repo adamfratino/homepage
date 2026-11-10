@@ -1,17 +1,15 @@
 import { formatHomeDateTime } from "@/lib/format";
+import { getLastUpdated } from "@/lib/last-updated";
 
 import { HobbiesText } from "@/components/shared/hobbies-text";
 
-/** Build-time stamp of the latest commit (see next.config.ts); absent only in an unconfigured build. */
-const UPDATED_AT = process.env.SITE_UPDATED_AT;
-
 /** "Last updated Nov 1, 2026, 10:35 PM EDT", with a machine-readable <time>. */
-export function LastUpdated() {
-  if (!UPDATED_AT) return null;
+export async function LastUpdated() {
+  const updatedAt = await getLastUpdated();
+  if (!updatedAt) return null;
   return (
     <HobbiesText>
-      Last updated{" "}
-      <time dateTime={UPDATED_AT}>{formatHomeDateTime(UPDATED_AT)}</time>
+      Last updated <time dateTime={updatedAt}>{formatHomeDateTime(updatedAt)}</time>
     </HobbiesText>
   );
 }

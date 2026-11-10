@@ -13,6 +13,8 @@ export type WatchedMovie = {
   watchedAt: string;
   /** The owner's own rating on Plex's 0-10 scale (two points per star), or null if unrated. */
   userRating: number | null;
+  /** When that rating was last set, as an ISO timestamp, or null if unrated. */
+  ratedAt: string | null;
 };
 
 export type WatchedShow = {
@@ -40,7 +42,14 @@ type HistoryEntry = {
 };
 type HistoryContainer = { Metadata?: HistoryEntry[] };
 type MetadataContainer = {
-  Metadata?: { ratingKey: string; title: string; year?: number; userRating?: number }[];
+  Metadata?: {
+    ratingKey: string;
+    title: string;
+    year?: number;
+    userRating?: number;
+    /** Unix seconds; present only once the owner has rated the film. */
+    lastRatedAt?: number;
+  }[];
 };
 
 // Newest first, owner only. 100 rows comfortably covers a few binge evenings.
@@ -106,6 +115,7 @@ export async function getRecentMovies(): Promise<WatchedMovie[]> {
         year: movie.year ?? null,
         watchedAt: toIso(entry.viewedAt),
         userRating: movie.userRating ?? null,
+        ratedAt: movie.lastRatedAt ? toIso(movie.lastRatedAt) : null,
       };
     });
   } catch (error) {
