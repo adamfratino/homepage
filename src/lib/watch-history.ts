@@ -13,7 +13,7 @@ export type WatchedMovie = {
   watchedAt: string;
   /** The owner's own rating on Plex's 0-10 scale (two points per star), or null if unrated. */
   userRating: number | null;
-  /** When that rating was last set, as an ISO timestamp, or null if unrated. */
+  /** When the rating was last set or cleared, as an ISO timestamp; null if it never was. */
   ratedAt: string | null;
 };
 

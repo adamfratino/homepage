@@ -42,6 +42,7 @@ export default function Home() {
       </Section>
 
       <Section title="Hobbies">
+        {/* A new row here also needs its timestamp added to getLastUpdated (src/lib/last-updated.ts). */}
         <RecentMovies />
         <RecentShows />
         <RecentPurchases />
