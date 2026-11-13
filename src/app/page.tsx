@@ -48,13 +48,15 @@ export default function Home() {
       </Section>
 
       <Section title="Recent media">
-        <RecentMovies />
-        <RecentShows />
-        <RecentTracks />
-        <RecentPurchases />
-        <RecentGames platform="ps5" />
-        <RecentGames platform="ps2" />
-        <RecentGames platform="psx" />
+        <Stack gap={SPACING_MD}>
+          <RecentMovies />
+          <RecentShows />
+          <RecentTracks />
+          <RecentPurchases />
+          <RecentGames platform="ps5" />
+          <RecentGames platform="ps2" />
+          <RecentGames platform="psx" />
+        </Stack>
       </Section>
     </MainLayout>
   );

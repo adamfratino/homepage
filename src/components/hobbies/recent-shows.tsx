@@ -12,8 +12,8 @@ function ShowRow({ show, className }: ShowRowProps) {
   return (
     <Group gap={SPACING_SM} ay="center" className={className}>
       <HobbiesText weight="bold">{show.title},</HobbiesText>
-      <HobbiesText>{formatHomeDate(show.watchedAt)},</HobbiesText>
-      <HobbiesText>{show.episodeCode}</HobbiesText>
+      <HobbiesText>{show.episodeCode},</HobbiesText>
+      <HobbiesText>{formatHomeDate(show.watchedAt)}</HobbiesText>
     </Group>
   );
 }
