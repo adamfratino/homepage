@@ -17,8 +17,17 @@ function plexHeaders(): HeadersInit {
   };
 }
 
+/**
+ * Longest to wait for one Plex response. A busy NAS can take far longer, and a cached function
+ * that outlasts the prerender deadline fails the whole build, so give up and show no rows.
+ */
+const PLEX_TIMEOUT_MS = 10_000;
+
 async function plexJson<T>(url: string): Promise<T> {
-  const response = await fetch(url, { headers: plexHeaders() });
+  const response = await fetch(url, {
+    headers: plexHeaders(),
+    signal: AbortSignal.timeout(PLEX_TIMEOUT_MS),
+  });
   if (!response.ok)
     throw new Error(`Plex responded ${response.status} for ${new URL(url).pathname}`);
   return (await response.json()) as T;
