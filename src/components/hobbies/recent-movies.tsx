@@ -1,6 +1,6 @@
 import { Group, Text, Stack } from "@uiid/design-system";
 
-import { SPACING_SM } from "@/constants/ui";
+import { SPACING_SM, SPACING_XS } from "@/constants/ui";
 import { formatHomeDate } from "@/lib/format";
 import { getRecentMovies, type WatchedMovie } from "@/lib/watch-history";
 
@@ -29,7 +29,7 @@ export async function RecentMovies() {
       <HobbiesText render={<h4 />} weight="bold" className="min-w-8">
         MOV:
       </HobbiesText>
-      <Stack>
+      <Stack gap={SPACING_XS}>
         <MovieRow movie={latest} />
         {earlier.map((movie) => (
           <MovieRow

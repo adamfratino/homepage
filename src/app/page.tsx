@@ -10,7 +10,13 @@ import SideProjectsContent from "@/content/side-projects.mdx";
 import { LastUpdated } from "@/components/shared/last-updated";
 import { MainLayout } from "@/components/shared/main-layout";
 
-import { RecentGames, RecentMovies, RecentPurchases, RecentShows } from "@/components/hobbies";
+import {
+  RecentGames,
+  RecentMovies,
+  RecentPurchases,
+  RecentShows,
+  RecentTracks,
+} from "@/components/hobbies";
 
 const PADDING_OUTER = SPACING_MD;
 
@@ -41,9 +47,10 @@ export default function Home() {
         </Prose>
       </Section>
 
-      <Section title="Hobbies">
+      <Section title="Recent media">
         <RecentMovies />
         <RecentShows />
+        <RecentTracks />
         <RecentPurchases />
         <RecentGames platform="ps5" />
         <RecentGames platform="ps2" />

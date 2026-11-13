@@ -1,4 +1,5 @@
 import { getRecentPurchases } from "@/lib/bandcamp";
+import { getRecentTracks } from "@/lib/listen-history";
 import { getGamesUpdatedAt, PLATFORMS } from "@/lib/play-tracker";
 import { getRecentMovies, getRecentShows } from "@/lib/watch-history";
 
@@ -7,13 +8,14 @@ const CODE_UPDATED_AT = process.env.SITE_UPDATED_AT;
 
 /**
  * When the site last changed: the newest of the latest commit and every media item on the page
- * (a film watched or rated, an episode watched, a Bandcamp purchase, a game played). Null only
- * when there is no commit stamp and no media loaded.
+ * (a film watched or rated, an episode watched, a song played, a Bandcamp purchase, a game
+ * played). Null only when there is no commit stamp and no media loaded.
  */
 export async function getLastUpdated(): Promise<string | null> {
-  const [movies, shows, purchases, ...games] = await Promise.all([
+  const [movies, shows, tracks, purchases, ...games] = await Promise.all([
     getRecentMovies(),
     getRecentShows(),
+    getRecentTracks(),
     getRecentPurchases(),
     ...PLATFORMS.map((platform) => getGamesUpdatedAt(platform)),
   ]);
@@ -22,6 +24,7 @@ export async function getLastUpdated(): Promise<string | null> {
     CODE_UPDATED_AT,
     ...movies.flatMap((movie) => [movie.watchedAt, movie.ratedAt]),
     ...shows.map((show) => show.watchedAt),
+    ...tracks.map((track) => track.playedAt),
     ...purchases.map((purchase) => purchase.purchasedAt),
     ...games,
   ]

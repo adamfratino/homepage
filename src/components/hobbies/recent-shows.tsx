@@ -1,6 +1,6 @@
 import { Group, Stack } from "@uiid/design-system";
 
-import { SPACING_SM } from "@/constants/ui";
+import { SPACING_SM, SPACING_XS } from "@/constants/ui";
 import { formatHomeDate } from "@/lib/format";
 import { getRecentShows, type WatchedShow } from "@/lib/watch-history";
 
@@ -27,7 +27,7 @@ export async function RecentShows() {
       <HobbiesText render={<h4 />} weight="bold" className="min-w-8">
         TV:
       </HobbiesText>
-      <Stack>
+      <Stack gap={SPACING_XS}>
         <ShowRow show={latest} />
         {earlier.map((show) => (
           <ShowRow key={show.title} show={show} className="opacity-50" />

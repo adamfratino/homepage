@@ -1,6 +1,6 @@
 import { Group, Stack } from "@uiid/design-system";
 
-import { SPACING_SM } from "@/constants/ui";
+import { SPACING_SM, SPACING_XS } from "@/constants/ui";
 import { formatCalendarDate } from "@/lib/format";
 import {
   getRecentGames,
@@ -46,7 +46,7 @@ export async function RecentGames({ platform }: RecentGamesProps) {
       <HobbiesText render={<h4 />} weight="bold" className="min-w-8">
         {PLATFORM_LABEL[platform]}:
       </HobbiesText>
-      <Stack>
+      <Stack gap={SPACING_XS}>
         <GameRow game={latest} />
         {earlier.map((game) => (
           <GameRow key={game.gameId} game={game} className="opacity-50" />
