@@ -29,11 +29,15 @@ export type WatchedShow = {
  * One row of the server's watch history. Plex writes a row only once playback passes the
  * scrobble threshold (about 90%), so every row here is a completed viewing.
  */
-type HistoryEntry = {
+export type HistoryEntry = {
   type: string;
   ratingKey?: string;
+  /** The film, episode or track title. */
+  title?: string;
   viewedAt: number;
-  /** Episodes only: the show, as "/library/metadata/<key>". */
+  /** Tracks only: the album. */
+  parentTitle?: string;
+  /** Episodes: the show, as "/library/metadata/<key>". Tracks: the album artist. */
   grandparentKey?: string;
   grandparentTitle?: string;
   /** Episodes only: season and episode numbers. */
@@ -41,6 +45,7 @@ type HistoryEntry = {
   index?: number;
 };
 type HistoryContainer = { Metadata?: HistoryEntry[] };
+type SectionsContainer = { Directory?: { key: string; type: string }[] };
 type MetadataContainer = {
   Metadata?: {
     ratingKey: string;
@@ -52,15 +57,19 @@ type MetadataContainer = {
   }[];
 };
 
-// Newest first, owner only. 100 rows comfortably covers a few binge evenings.
-const HISTORY_PATH =
-  `/status/sessions/history/all?accountID=${PLEX_OWNER_ACCOUNT_ID}` +
-  "&sort=viewedAt:desc&X-Plex-Container-Start=0&X-Plex-Container-Size=100";
+/** Which libraries a history request covers, as the Plex library types that belong to it. */
+const LIBRARY_TYPES = { video: ["movie", "show"], music: ["artist"] } as const;
 
-type OwnerHistory = { serverUrl: string; entries: HistoryEntry[] };
+export type HistoryKind = keyof typeof LIBRARY_TYPES;
 
-/** The owner's recent completed viewings, fetched once and shared by the film and TV rows. */
-async function getOwnerHistory(): Promise<OwnerHistory | null> {
+export type OwnerHistory = { serverUrl: string; entries: HistoryEntry[] };
+
+/**
+ * The owner's recent completed plays of one kind, newest first. Video is fetched once and shared
+ * by the film and TV rows. Music is asked for separately, because the history has no type filter
+ * and an afternoon of songs would otherwise push every film and episode out of the page of rows.
+ */
+export async function getOwnerHistory(kind: HistoryKind): Promise<OwnerHistory | null> {
   "use cache";
   cacheLife("minutes");
   cacheTag("plex-history");
@@ -69,15 +78,29 @@ async function getOwnerHistory(): Promise<OwnerHistory | null> {
   // so a missing token, unreachable NAS, or API change degrades to "no section" here.
   try {
     const serverUrl = await getPlexServerUrl();
-    const history = await getPlexContainer<HistoryContainer>(serverUrl, HISTORY_PATH);
+    const sections = await getPlexContainer<SectionsContainer>(serverUrl, "/library/sections");
+    const types: readonly string[] = LIBRARY_TYPES[kind];
+    const sectionIds = (sections.Directory ?? [])
+      .filter((section) => types.includes(section.type))
+      .map((section) => section.key);
+    if (sectionIds.length === 0) return { serverUrl, entries: [] };
+
+    // Owner only. 100 rows comfortably covers a few binge evenings.
+    const history = await getPlexContainer<HistoryContainer>(
+      serverUrl,
+      `/status/sessions/history/all?accountID=${PLEX_OWNER_ACCOUNT_ID}` +
+        `&librarySectionID=${sectionIds.join(",")}` +
+        "&sort=viewedAt:desc&X-Plex-Container-Start=0&X-Plex-Container-Size=100",
+    );
     return { serverUrl, entries: history.Metadata ?? [] };
   } catch (error) {
-    console.error("getOwnerHistory: could not load Plex history", error);
+    console.error(`getOwnerHistory: could not load Plex ${kind} history`, error);
     return null;
   }
 }
 
-function toIso(viewedAt: number): string {
+/** Converts Plex's Unix seconds to an ISO timestamp. */
+export function toIso(viewedAt: number): string {
   return new Date(viewedAt * 1000).toISOString();
 }
 
@@ -86,7 +109,7 @@ export async function getRecentMovies(): Promise<WatchedMovie[]> {
   cacheLife("minutes");
   cacheTag("plex-movies");
 
-  const history = await getOwnerHistory();
+  const history = await getOwnerHistory("video");
   if (!history) return [];
 
   // The same film can appear twice (resumed viewings); keep the newest row per film.
@@ -140,7 +163,7 @@ export async function getRecentShows(): Promise<WatchedShow[]> {
   cacheLife("minutes");
   cacheTag("plex-shows");
 
-  const history = await getOwnerHistory();
+  const history = await getOwnerHistory("video");
   if (!history) return [];
 
   const shows: WatchedShow[] = [];

@@ -1,6 +1,6 @@
 /**
  * Bandcamp fan page username. Its collection must be public; the page returns 404 for unknown
- * handles, which the site degrades to "no MP3 row".
+ * handles, which the site degrades to "no LP row".
  */
 export const BANDCAMP_USERNAME = "shrimpingvessel";
 
