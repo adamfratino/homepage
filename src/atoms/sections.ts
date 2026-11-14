@@ -1,6 +1,6 @@
 import { atom } from "jotai";
 
-/** Open state of every mounted homepage section, keyed by its title. */
+/** Open state of every homepage section that has registered, keyed by its title. Entries outlive an unmount. */
 export const sectionsOpenAtom = atom<Record<string, boolean>>({});
 
 /** Whether any section is open. True before sections register, since they default to open. */

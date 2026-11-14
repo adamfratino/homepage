@@ -2,10 +2,7 @@
 
 import { useAtomValue, useSetAtom } from "jotai";
 import { ToggleButton } from "@uiid/design-system";
-import {
-  ChevronsDownUpIcon,
-  ChevronsUpDownIcon,
-} from "@uiid/design-system/icons";
+import { ChevronsDownUpIcon, ChevronsUpDownIcon } from "@uiid/design-system/icons";
 
 import { anySectionOpenAtom, setAllSectionsOpenAtom } from "@/atoms/sections";
 
@@ -18,6 +15,7 @@ export function SectionsToggle() {
     <ToggleButton
       variant="ghost"
       size="xsmall"
+      aria-label="Collapse all sections"
       pressed={!anyOpen}
       onPressedChange={(pressed) => setAllOpen(!pressed)}
       icon={{
