@@ -10,6 +10,7 @@ import SideProjectsContent from "@/content/side-projects.mdx";
 import { LastUpdated } from "@/components/shared/last-updated";
 import { MainLayout } from "@/components/shared/main-layout";
 import { Section } from "@/components/shared/section";
+import { SectionsToggle } from "@/components/shared/sections-toggle";
 
 import { RecentNotes } from "@/components/notes/recent-notes";
 
@@ -26,6 +27,7 @@ export default function Home() {
     <MainLayout
       title={TITLE}
       description={DESCRIPTION}
+      action={<SectionsToggle />}
       footer={<LastUpdated />}
     >
       <Section title="Social">
