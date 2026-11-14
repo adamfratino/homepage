@@ -1,9 +1,18 @@
 import { SPACING_LG } from "@/constants/ui";
 import { Card, type CardProps } from "@uiid/design-system";
 
-type MainLayoutProps = Pick<CardProps, "title" | "description" | "footer" | "children" | "maxw">;
+type MainLayoutProps = Pick<
+  CardProps,
+  "title" | "description" | "footer" | "children" | "maxw"
+>;
 
-export function MainLayout({ title, description, footer, children, maxw }: MainLayoutProps) {
+export function MainLayout({
+  title,
+  description,
+  footer,
+  children,
+  maxw,
+}: MainLayoutProps) {
   return (
     <Card
       data-slot="main-layout"
