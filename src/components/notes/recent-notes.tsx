@@ -15,7 +15,10 @@ export async function RecentNotes() {
         {notes.map((note) => (
           <li key={note.slug}>
             <strong>
-              <Link href={`/notes/${note.slug}`}>{note.title}</Link>
+              {/* A default link prefetches only the route's shared, empty shell; this one fetches the static note. */}
+              <Link href={`/notes/${note.slug}`} prefetch>
+                {note.title}
+              </Link>
             </strong>{" "}
             &mdash; <time dateTime={note.date}>{formatCalendarDate(note.date)}</time>
           </li>

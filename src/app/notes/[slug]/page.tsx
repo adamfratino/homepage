@@ -12,6 +12,12 @@ import { getNote, getNotes } from "@/lib/notes";
 import { HobbiesText } from "@/components/shared/hobbies-text";
 import { MainLayout } from "@/components/shared/main-layout";
 
+/**
+ * Every note is fully static. An unknown slug waits for its (not-found) render instead of
+ * streaming a fallback shell, so it can answer with a real 404 status.
+ */
+export const ensureStatic = "navigation";
+
 /** Prerenders every note in notes/. */
 export async function generateStaticParams() {
   const notes = await getNotes();
