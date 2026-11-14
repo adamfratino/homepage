@@ -1,6 +1,6 @@
-import { Stack, Text, Prose, List, ListItem } from "@uiid/design-system";
+import { Text, Prose, List, ListItem } from "@uiid/design-system";
 
-import { SPACING_BASE, SPACING_MD, SPACING_SM } from "@/constants/ui";
+import { PROSE_LIST_OUTDENT, SPACING_BASE } from "@/constants/ui";
 import { PERSONAL_LINKS } from "@/constants/links";
 import { TITLE, DESCRIPTION } from "@/constants/copy";
 
@@ -9,6 +9,7 @@ import SideProjectsContent from "@/content/side-projects.mdx";
 
 import { LastUpdated } from "@/components/shared/last-updated";
 import { MainLayout } from "@/components/shared/main-layout";
+import { Section } from "@/components/shared/section";
 
 import { RecentNotes } from "@/components/notes/recent-notes";
 
@@ -19,8 +20,6 @@ import {
   RecentShows,
   RecentTracks,
 } from "@/components/hobbies";
-
-const PADDING_OUTER = SPACING_MD;
 
 export default function Home() {
   return (
@@ -42,13 +41,13 @@ export default function Home() {
       </Section>
 
       <Section title="Timeline">
-        <Prose>
+        <Prose ml={PROSE_LIST_OUTDENT}>
           <BioContent />
         </Prose>
       </Section>
 
       <Section title="Side projects">
-        <Prose>
+        <Prose ml={PROSE_LIST_OUTDENT}>
           <SideProjectsContent />
         </Prose>
       </Section>
@@ -71,25 +70,3 @@ export default function Home() {
     </MainLayout>
   );
 }
-
-type SectionProps = {
-  title: string;
-  children: React.ReactNode;
-};
-
-const Section = ({ title, children }: SectionProps) => {
-  return (
-    <Stack render={<section />} gap={SPACING_SM} ml={PADDING_OUTER}>
-      <Text
-        render={<h3 />}
-        weight="bold"
-        size={-1}
-        emphasis="subtle"
-        ml={PADDING_OUTER * -1}
-      >
-        {title}
-      </Text>
-      {children}
-    </Stack>
-  );
-};

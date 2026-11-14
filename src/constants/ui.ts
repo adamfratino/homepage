@@ -4,5 +4,8 @@ export const SPACING_SM = SPACING_BASE * 2;
 export const SPACING_MD = SPACING_BASE * 4;
 export const SPACING_LG = SPACING_BASE * 8;
 
+/** Pulls a bulleted prose list in a homepage section back left, halving its indent. */
+export const PROSE_LIST_OUTDENT = SPACING_SM * -1;
+
 /** Reading width for a note page, in px. Matches the 720px the shell card caps its title at. */
 export const NOTES_MAXWIDTH = 720;

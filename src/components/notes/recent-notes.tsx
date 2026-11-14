@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Prose } from "@uiid/design-system";
 
+import { PROSE_LIST_OUTDENT } from "@/constants/ui";
 import { formatCalendarDate } from "@/lib/format";
 import { getNotes } from "@/lib/notes";
 
@@ -10,7 +11,7 @@ export async function RecentNotes() {
   if (notes.length === 0) return null;
 
   return (
-    <Prose>
+    <Prose ml={PROSE_LIST_OUTDENT}>
       <ul>
         {notes.map((note) => (
           <li key={note.slug}>
