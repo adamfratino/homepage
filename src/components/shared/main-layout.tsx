@@ -3,12 +3,13 @@ import { Card, type CardProps } from "@uiid/design-system";
 
 type MainLayoutProps = Pick<
   CardProps,
-  "title" | "description" | "footer" | "children" | "maxw"
+  "title" | "description" | "action" | "footer" | "children" | "maxw"
 >;
 
 export function MainLayout({
   title,
   description,
+  action,
   footer,
   children,
   maxw,
@@ -19,6 +20,7 @@ export function MainLayout({
       variant="shell"
       title={title}
       description={description}
+      action={action}
       footer={footer}
       maxw={maxw}
       InnerContainerProps={{ render: <main />, gap: SPACING_SM }}
