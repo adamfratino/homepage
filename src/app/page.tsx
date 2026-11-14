@@ -10,6 +10,8 @@ import SideProjectsContent from "@/content/side-projects.mdx";
 import { LastUpdated } from "@/components/shared/last-updated";
 import { MainLayout } from "@/components/shared/main-layout";
 
+import { RecentNotes } from "@/components/notes/recent-notes";
+
 import {
   RecentGames,
   RecentMovies,
@@ -49,6 +51,10 @@ export default function Home() {
         <Prose>
           <SideProjectsContent />
         </Prose>
+      </Section>
+
+      <Section title="Random thoughts">
+        <RecentNotes />
       </Section>
 
       <Section title="Recent media">

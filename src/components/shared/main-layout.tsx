@@ -1,9 +1,9 @@
 import { SPACING_LG } from "@/constants/ui";
 import { Card, type CardProps } from "@uiid/design-system";
 
-type MainLayoutProps = Pick<CardProps, "title" | "description" | "footer" | "children">;
+type MainLayoutProps = Pick<CardProps, "title" | "description" | "footer" | "children" | "maxw">;
 
-export function MainLayout({ title, description, footer, children }: MainLayoutProps) {
+export function MainLayout({ title, description, footer, children, maxw }: MainLayoutProps) {
   return (
     <Card
       data-slot="main-layout"
@@ -11,6 +11,7 @@ export function MainLayout({ title, description, footer, children }: MainLayoutP
       title={title}
       description={description}
       footer={footer}
+      maxw={maxw}
       InnerContainerProps={{ render: <main />, gap: SPACING_LG }}
       HeaderProps={{ render: <header /> }}
       FooterProps={{ render: <footer /> }}
