@@ -4,9 +4,7 @@ import { createGunzip } from "node:zlib";
 import { cacheLife, cacheTag } from "next/cache";
 
 import { BANDCAMP_FAN_URL, BANDCAMP_USER_AGENT } from "@/constants/bandcamp";
-
-/** How many recent purchases to show. */
-export const RECENT_LIMIT = 2;
+import { RECENT_VINYL_LIMIT } from "@/constants/hobbies";
 
 export type Purchase = {
   title: string;
@@ -45,12 +43,16 @@ const NAMED_ENTITIES: Record<string, string> = {
 
 /** Decodes the entities Bandcamp uses when it escapes JSON into an HTML attribute. */
 function decodeAttribute(value: string): string {
-  return value.replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (entity, body: string) => {
-    if (body.startsWith("#x") || body.startsWith("#X"))
-      return String.fromCodePoint(Number.parseInt(body.slice(2), 16));
-    if (body.startsWith("#")) return String.fromCodePoint(Number(body.slice(1)));
-    return NAMED_ENTITIES[body.toLowerCase()] ?? entity;
-  });
+  return value.replace(
+    /&(#x[0-9a-f]+|#\d+|[a-z]+);/gi,
+    (entity, body: string) => {
+      if (body.startsWith("#x") || body.startsWith("#X"))
+        return String.fromCodePoint(Number.parseInt(body.slice(2), 16));
+      if (body.startsWith("#"))
+        return String.fromCodePoint(Number(body.slice(1)));
+      return NAMED_ENTITIES[body.toLowerCase()] ?? entity;
+    },
+  );
 }
 
 function toIso(purchased: string | null | undefined): string | null {
@@ -73,7 +75,8 @@ export function parseFanPage(html: string): Purchase[] {
     const item = collection[key];
     if (!item || item.hidden) continue;
     const purchasedAt = toIso(item.purchased);
-    if (!item.item_title || !item.band_name || !item.item_url || !purchasedAt) continue;
+    if (!item.item_title || !item.band_name || !item.item_url || !purchasedAt)
+      continue;
     purchases.push({
       title: item.item_title,
       artist: item.band_name,
@@ -81,7 +84,9 @@ export function parseFanPage(html: string): Purchase[] {
       purchasedAt,
     });
   }
-  return purchases.toSorted((a, b) => b.purchasedAt.localeCompare(a.purchasedAt));
+  return purchases.toSorted((a, b) =>
+    b.purchasedAt.localeCompare(a.purchasedAt),
+  );
 }
 
 /**
@@ -93,7 +98,12 @@ function fetchPage(url: string): Promise<{ status: number; body: string }> {
   return new Promise((resolve, reject) => {
     const request = get(
       url,
-      { headers: { "User-Agent": BANDCAMP_USER_AGENT, "Accept-Encoding": "gzip" } },
+      {
+        headers: {
+          "User-Agent": BANDCAMP_USER_AGENT,
+          "Accept-Encoding": "gzip",
+        },
+      },
       (response) => {
         const stream =
           response.headers["content-encoding"] === "gzip"
@@ -114,7 +124,9 @@ function fetchPage(url: string): Promise<{ status: number; body: string }> {
   });
 }
 
-export async function getRecentPurchases(limit = RECENT_LIMIT): Promise<Purchase[]> {
+export async function getRecentPurchases(
+  limit = RECENT_VINYL_LIMIT,
+): Promise<Purchase[]> {
   "use cache";
   cacheLife("minutes");
   cacheTag("bandcamp-purchases");
@@ -126,7 +138,10 @@ export async function getRecentPurchases(limit = RECENT_LIMIT): Promise<Purchase
     if (status !== 200) throw new Error(`Bandcamp responded ${status}`);
     return parseFanPage(body).slice(0, limit);
   } catch (error) {
-    console.error("getRecentPurchases: could not load Bandcamp collection", error);
+    console.error(
+      "getRecentPurchases: could not load Bandcamp collection",
+      error,
+    );
     return [];
   }
 }

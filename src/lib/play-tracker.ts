@@ -6,10 +6,15 @@ import {
   LINEAR_PSX_TRACKER_DOCUMENT_ID,
 } from "@/constants/linear";
 import { getLinearDocument } from "@/lib/linear";
+import { RECENT_GAMES_LIMIT } from "@/constants/hobbies";
 
 export type Platform = "psx" | "ps2" | "ps5";
 
-export const PLATFORM_LABEL: Record<Platform, string> = { psx: "PSX", ps2: "PS2", ps5: "PS5" };
+export const PLATFORM_LABEL: Record<Platform, string> = {
+  psx: "PSX",
+  ps2: "PS2",
+  ps5: "PS5",
+};
 
 export const PLATFORMS = Object.keys(PLATFORM_LABEL) as Platform[];
 
@@ -32,7 +37,8 @@ export type TrackedGame = {
 const GAMES_HEADING = "## Games";
 // "Title (SLUS_123.45, CD, Modes 1, 2)" or "Title (PPSA01234_00, PS4)" -> title + game id; mirrors the
 // watchers' GID_RE (PS1/PS2 disc ids) and TID_RE (PSN title ids).
-const GAME_CELL = /^(.*?)\s*\(([A-Z]{4}_\d{3}\.\d{2}|[A-Z]{4}\d{5}(?:_\d{2})?)(?:,[^)]*)?\)\s*$/;
+const GAME_CELL =
+  /^(.*?)\s*\(([A-Z]{4}_\d{3}\.\d{2}|[A-Z]{4}\d{5}(?:_\d{2})?)(?:,[^)]*)?\)\s*$/;
 // "2026-11-01 · 16m" or "2026-11-01 · 1h 05m"; mirrors the watcher's fmt_time.
 const PLAYED_CELL = /^(\d{4}-\d{2}-\d{2})\s*·\s*(?:(\d+)h\s*)?(\d+)m$/;
 
@@ -52,7 +58,8 @@ export function parseTrackedGames(content: string): TrackedGame[] {
 
   // Skip to the first table row after the heading, then consume consecutive rows.
   let index = headingIndex + 1;
-  while (index < lines.length && !lines[index].trimStart().startsWith("|")) index += 1;
+  while (index < lines.length && !lines[index].trimStart().startsWith("|"))
+    index += 1;
   const rows: string[] = [];
   while (index < lines.length && lines[index].trimStart().startsWith("|")) {
     rows.push(lines[index]);
@@ -80,19 +87,20 @@ export function parseTrackedGames(content: string): TrackedGame[] {
   return games;
 }
 
-/** How many recent titles each platform shows. */
-export const RECENT_LIMIT = 2;
-
 /**
  * Played games, most recent first. The tracker only records a date, so same-day ties are ordered
  * by session length, longest first.
  */
-export function recentlyPlayedGames(games: TrackedGame[], limit = RECENT_LIMIT): TrackedGame[] {
+export function recentlyPlayedGames(
+  games: TrackedGame[],
+  limit = RECENT_GAMES_LIMIT,
+): TrackedGame[] {
   return games
     .filter((game) => game.lastPlayed !== null)
     .toSorted(
       (a, b) =>
-        b.lastPlayed!.localeCompare(a.lastPlayed!) || (b.playSeconds ?? 0) - (a.playSeconds ?? 0),
+        b.lastPlayed!.localeCompare(a.lastPlayed!) ||
+        (b.playSeconds ?? 0) - (a.playSeconds ?? 0),
     )
     .slice(0, limit);
 }
@@ -123,7 +131,9 @@ async function getTracker(platform: Platform): Promise<Tracker> {
   }
 }
 
-export async function getRecentGames(platform: Platform): Promise<TrackedGame[]> {
+export async function getRecentGames(
+  platform: Platform,
+): Promise<TrackedGame[]> {
   return (await getTracker(platform)).games;
 }
 
@@ -131,7 +141,9 @@ export async function getRecentGames(platform: Platform): Promise<TrackedGame[]>
  * When a platform's games last changed. The Played column only records a date, so this is the
  * tracker document's own edit time; null when the platform shows no games.
  */
-export async function getGamesUpdatedAt(platform: Platform): Promise<string | null> {
+export async function getGamesUpdatedAt(
+  platform: Platform,
+): Promise<string | null> {
   const { games, updatedAt } = await getTracker(platform);
   return games.length > 0 ? updatedAt : null;
 }

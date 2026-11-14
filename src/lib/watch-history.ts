@@ -2,9 +2,7 @@ import { cacheLife, cacheTag } from "next/cache";
 
 import { PLEX_OWNER_ACCOUNT_ID } from "@/constants/plex";
 import { getPlexContainer, getPlexServerUrl } from "@/lib/plex";
-
-/** How many recent films and shows to show. */
-export const RECENT_LIMIT = 2;
+import { RECENT_SHOWS_LIMIT } from "@/constants/hobbies";
 
 export type WatchedMovie = {
   title: string;
@@ -69,7 +67,9 @@ export type OwnerHistory = { serverUrl: string; entries: HistoryEntry[] };
  * by the film and TV rows. Music is asked for separately, because the history has no type filter
  * and an afternoon of songs would otherwise push every film and episode out of the page of rows.
  */
-export async function getOwnerHistory(kind: HistoryKind): Promise<OwnerHistory | null> {
+export async function getOwnerHistory(
+  kind: HistoryKind,
+): Promise<OwnerHistory | null> {
   "use cache";
   cacheLife("minutes");
   cacheTag("plex-history");
@@ -78,7 +78,10 @@ export async function getOwnerHistory(kind: HistoryKind): Promise<OwnerHistory |
   // so a missing token, unreachable NAS, or API change degrades to "no section" here.
   try {
     const serverUrl = await getPlexServerUrl();
-    const sections = await getPlexContainer<SectionsContainer>(serverUrl, "/library/sections");
+    const sections = await getPlexContainer<SectionsContainer>(
+      serverUrl,
+      "/library/sections",
+    );
     const types: readonly string[] = LIBRARY_TYPES[kind];
     const sectionIds = (sections.Directory ?? [])
       .filter((section) => types.includes(section.type))
@@ -94,7 +97,10 @@ export async function getOwnerHistory(kind: HistoryKind): Promise<OwnerHistory |
     );
     return { serverUrl, entries: history.Metadata ?? [] };
   } catch (error) {
-    console.error(`getOwnerHistory: could not load Plex ${kind} history`, error);
+    console.error(
+      `getOwnerHistory: could not load Plex ${kind} history`,
+      error,
+    );
     return null;
   }
 }
@@ -118,7 +124,7 @@ export async function getRecentMovies(): Promise<WatchedMovie[]> {
     if (item.type !== "movie" || !item.ratingKey) continue;
     if (entries.some((entry) => entry.ratingKey === item.ratingKey)) continue;
     entries.push(item);
-    if (entries.length === RECENT_LIMIT) break;
+    if (entries.length === RECENT_SHOWS_LIMIT) break;
   }
   if (entries.length === 0) return [];
 
@@ -128,7 +134,9 @@ export async function getRecentMovies(): Promise<WatchedMovie[]> {
       history.serverUrl,
       `/library/metadata/${keys}`,
     );
-    const byKey = new Map(metadata.Metadata?.map((movie) => [movie.ratingKey, movie]));
+    const byKey = new Map(
+      metadata.Metadata?.map((movie) => [movie.ratingKey, movie]),
+    );
 
     return entries.flatMap((entry) => {
       const movie = byKey.get(entry.ratingKey!);
@@ -169,7 +177,12 @@ export async function getRecentShows(): Promise<WatchedShow[]> {
   const shows: WatchedShow[] = [];
   const seen = new Set<string>();
   for (const item of history.entries) {
-    if (item.type !== "episode" || !item.grandparentKey || !item.grandparentTitle) continue;
+    if (
+      item.type !== "episode" ||
+      !item.grandparentKey ||
+      !item.grandparentTitle
+    )
+      continue;
     if (item.parentIndex === undefined || item.index === undefined) continue;
     if (seen.has(item.grandparentKey)) continue;
     seen.add(item.grandparentKey);
@@ -178,7 +191,7 @@ export async function getRecentShows(): Promise<WatchedShow[]> {
       episodeCode: episodeCode(item.parentIndex, item.index),
       watchedAt: toIso(item.viewedAt),
     });
-    if (shows.length === RECENT_LIMIT) break;
+    if (shows.length === RECENT_SHOWS_LIMIT) break;
   }
   return shows;
 }

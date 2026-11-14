@@ -1,9 +1,7 @@
 import { cacheLife, cacheTag } from "next/cache";
 
 import { getOwnerHistory, toIso } from "@/lib/watch-history";
-
-/** How many recent songs to show. */
-export const RECENT_LIMIT = 5;
+import { RECENT_MP3_LIMIT } from "@/constants/hobbies";
 
 export type PlayedTrack = {
   /** Plex's id for the track; stable across plays. */
@@ -27,7 +25,13 @@ export async function getRecentTracks(): Promise<PlayedTrack[]> {
 
   const tracks: PlayedTrack[] = [];
   for (const item of history.entries) {
-    if (item.type !== "track" || !item.ratingKey || !item.title || !item.grandparentTitle) continue;
+    if (
+      item.type !== "track" ||
+      !item.ratingKey ||
+      !item.title ||
+      !item.grandparentTitle
+    )
+      continue;
     // A song on repeat appears once, at its newest play.
     if (tracks.some((track) => track.id === item.ratingKey)) continue;
     tracks.push({
@@ -37,7 +41,7 @@ export async function getRecentTracks(): Promise<PlayedTrack[]> {
       album: item.parentTitle ?? null,
       playedAt: toIso(item.viewedAt),
     });
-    if (tracks.length === RECENT_LIMIT) break;
+    if (tracks.length === RECENT_MP3_LIMIT) break;
   }
   return tracks;
 }

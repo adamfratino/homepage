@@ -14,8 +14,8 @@ function MovieRow({ movie, className }: MovieRowProps) {
   return (
     <Group gap={SPACING_SM} ay="end" className={className}>
       <HobbiesText weight="bold">{movie.title},</HobbiesText>
-      <HobbiesText size={-1}>{formatHomeDate(movie.watchedAt)},</HobbiesText>
       {movie.userRating !== null && <StarRating rating={movie.userRating} />}
+      <HobbiesText size={-1}>{formatHomeDate(movie.watchedAt)}</HobbiesText>
     </Group>
   );
 }

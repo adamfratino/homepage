@@ -25,11 +25,11 @@ function GameRow({ game, className }: GameRowProps) {
   return (
     <Group gap={SPACING_SM} ay="center" className={className}>
       <HobbiesText weight="bold">{game.title},</HobbiesText>
-      {game.lastPlayed && (
-        <HobbiesText>{formatCalendarDate(game.lastPlayed)},</HobbiesText>
-      )}
       {game.playSeconds !== null && (
-        <HobbiesText>{formatPlayTime(game.playSeconds)}</HobbiesText>
+        <HobbiesText>{formatPlayTime(game.playSeconds)},</HobbiesText>
+      )}
+      {game.lastPlayed && (
+        <HobbiesText>{formatCalendarDate(game.lastPlayed)}</HobbiesText>
       )}
     </Group>
   );

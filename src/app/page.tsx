@@ -22,7 +22,11 @@ const PADDING_OUTER = SPACING_MD;
 
 export default function Home() {
   return (
-    <MainLayout title={TITLE} description={DESCRIPTION} footer={<LastUpdated />}>
+    <MainLayout
+      title={TITLE}
+      description={DESCRIPTION}
+      footer={<LastUpdated />}
+    >
       <Section title="Social">
         <List gap={SPACING_BASE}>
           {PERSONAL_LINKS.map((link) => (
@@ -52,6 +56,8 @@ export default function Home() {
         <RecentShows />
         <RecentTracks />
         <RecentPurchases />
+      </Section>
+      <Section title="Recent gaming">
         <RecentGames platform="ps5" />
         <RecentGames platform="ps2" />
         <RecentGames platform="psx" />
@@ -68,7 +74,13 @@ type SectionProps = {
 const Section = ({ title, children }: SectionProps) => {
   return (
     <Stack render={<section />} gap={SPACING_SM} ml={PADDING_OUTER}>
-      <Text render={<h3 />} weight="bold" size={-1} emphasis="subtle" ml={PADDING_OUTER * -1}>
+      <Text
+        render={<h3 />}
+        weight="bold"
+        size={-1}
+        emphasis="subtle"
+        ml={PADDING_OUTER * -1}
+      >
         {title}
       </Text>
       {children}
