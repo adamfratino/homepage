@@ -1,4 +1,4 @@
-import { SPACING_LG } from "@/constants/ui";
+import { SPACING_SM } from "@/constants/ui";
 import { Card, type CardProps } from "@uiid/design-system";
 
 type MainLayoutProps = Pick<
@@ -21,7 +21,7 @@ export function MainLayout({
       description={description}
       footer={footer}
       maxw={maxw}
-      InnerContainerProps={{ render: <main />, gap: SPACING_LG }}
+      InnerContainerProps={{ render: <main />, gap: SPACING_SM }}
       HeaderProps={{ render: <header /> }}
       FooterProps={{ render: <footer /> }}
       TitleProps={{ render: <h1 />, weight: "bold" }}
