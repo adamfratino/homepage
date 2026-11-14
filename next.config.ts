@@ -29,6 +29,9 @@ const nextConfig: NextConfig = {
   },
 };
 
-const withMDX = createMDX({});
+/** Plugins are named by string because Turbopack can't take functions. They turn each note's YAML frontmatter into a `frontmatter` export. */
+const withMDX = createMDX({
+  options: { remarkPlugins: ["remark-frontmatter", "remark-mdx-frontmatter"] },
+});
 
 export default withMDX(nextConfig);
