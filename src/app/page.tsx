@@ -3,6 +3,7 @@ import { Text, Prose, List, ListItem } from "@uiid/design-system";
 import { PROSE_LIST_OUTDENT, SPACING_BASE } from "@/constants/ui";
 import { PERSONAL_LINKS } from "@/constants/links";
 import { TITLE, DESCRIPTION } from "@/constants/copy";
+import { BATHROOM_SELFIES_LIMIT } from "@/constants/hobbies";
 
 import BioContent from "@/content/bio.mdx";
 import SideProjectsContent from "@/content/side-projects.mdx";
@@ -13,6 +14,7 @@ import { Section } from "@/components/shared/section";
 import { SectionsToggle } from "@/components/shared/sections-toggle";
 
 import { RecentNotes } from "@/components/notes/recent-notes";
+import { PhotoThumbs } from "@/components/photos/photo-thumbs";
 
 import {
   RecentGames,
@@ -56,6 +58,14 @@ export default function Home() {
 
       <Section title="Random thoughts">
         <RecentNotes />
+      </Section>
+
+      <Section title="Bathroom selfies">
+        <PhotoThumbs
+          album="bathroom-selfies"
+          limit={BATHROOM_SELFIES_LIMIT}
+          label="Bathroom selfie"
+        />
       </Section>
 
       <Section title="Recent media">
