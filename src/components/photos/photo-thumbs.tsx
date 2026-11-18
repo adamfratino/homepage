@@ -1,16 +1,16 @@
 import Image from "next/image";
+import { preconnect } from "react-dom";
 import { Group } from "@uiid/design-system";
 
+import { PHOTOS_BLOB_URL } from "@/constants/photos";
 import { SPACING_SM } from "@/constants/ui";
 import { getAlbumPhotos } from "@/lib/photos";
 
 /** Rendered thumbnail edge in CSS px. The files are 2x this. */
 const THUMB_SIZE = 120;
 
-const takenOn = new Intl.DateTimeFormat("en-US", { dateStyle: "long", timeZone: "UTC" });
-
 type PhotoThumbsProps = {
-  /** Album slug as published by the NAS photosync container, e.g. "bathroom-selfies". */
+  /** Album slug on the photo store, e.g. "bathroom-selfies". */
   album: string;
   limit: number;
   /** Alt text for each thumbnail, followed by the date it was taken. */
@@ -22,15 +22,18 @@ export async function PhotoThumbs({ album, limit, label }: PhotoThumbsProps) {
   const photos = await getAlbumPhotos(album, limit);
   if (photos.length === 0) return null;
 
+  // The thumbnails are the only requests to the Blob host, so open that connection early.
+  preconnect(new URL(PHOTOS_BLOB_URL).origin);
+
   return (
     <Group gap={SPACING_SM} wrap>
       {photos.map((photo) => (
         <a key={photo.id} href={photo.src} target="_blank" rel="noopener noreferrer">
-          {/* Already resized on the NAS, so skip the image optimizer. */}
+          {/* Already resized by the sync job, so skip the image optimizer. */}
           <Image
             unoptimized
             src={photo.thumb}
-            alt={`${label}, ${takenOn.format(new Date(`${photo.takenAt}Z`))}`}
+            alt={`${label}, ${photo.takenOn}`}
             width={THUMB_SIZE}
             height={THUMB_SIZE}
             className="block"
