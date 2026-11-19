@@ -2,12 +2,9 @@ import Image from "next/image";
 import { preconnect } from "react-dom";
 import { Group } from "@uiid/design-system";
 
-import { PHOTOS_BLOB_URL } from "@/constants/photos";
+import { PHOTOS_BLOB_URL, THUMB_SIZE } from "@/constants/photos";
 import { SPACING_SM } from "@/constants/ui";
 import { getAlbumPhotos } from "@/lib/photos";
-
-/** Rendered thumbnail edge in CSS px. The files are 2x this. */
-const THUMB_SIZE = 120;
 
 type PhotoThumbsProps = {
   /** Album slug on the photo store, e.g. "bathroom-selfies". */
@@ -28,7 +25,12 @@ export async function PhotoThumbs({ album, limit, label }: PhotoThumbsProps) {
   return (
     <Group gap={SPACING_SM} wrap>
       {photos.map((photo) => (
-        <a key={photo.id} href={photo.src} target="_blank" rel="noopener noreferrer">
+        <a
+          key={photo.id}
+          href={photo.src}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {/* Already resized by the sync job, so skip the image optimizer. */}
           <Image
             unoptimized

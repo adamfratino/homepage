@@ -3,7 +3,7 @@ import { Text, Prose, List, ListItem } from "@uiid/design-system";
 import { PROSE_LIST_OUTDENT, SPACING_BASE } from "@/constants/ui";
 import { PERSONAL_LINKS } from "@/constants/links";
 import { TITLE, DESCRIPTION } from "@/constants/copy";
-import { BATHROOM_SELFIES_LIMIT } from "@/constants/hobbies";
+import { BATHROOM_SELFIES_LIMIT } from "@/constants/photos";
 
 import BioContent from "@/content/bio.mdx";
 import SideProjectsContent from "@/content/side-projects.mdx";
